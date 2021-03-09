@@ -1,5 +1,15 @@
 {
   "app_title": "Template app",
+  "home": "Home",
   "robot": "Robot",
-  "mine": "My"
+  "discovery": "Discovery",
+  "mine": "My",
+  "recommend": "Recommend",
+  "social": "Social",
+  "entertainment": "Entertainment",
+  "sport": "Sport",
+  "article": "Article",
+  "tech": "Tech",
+  "finance": "Finance",
+  "fishion": "Fishion"
 }

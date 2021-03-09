@@ -1,5 +1,15 @@
 {
   "app_title": "模块app",
+  "home": "首页",
   "robot": "机器人",
-  "mine": "我的"
+  "discovery": "发现",
+  "mine": "我的",
+  "recommend": "推荐",
+  "social": "社会",
+  "entertainment": "娱乐",
+  "sport": "体育",
+  "article": "美文",
+  "tech": "科技",
+  "finance": "财经",
+  "fishion": "时尚"
 }
