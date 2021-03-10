@@ -19,5 +19,12 @@
   "pls_input_password": "请输入密码",
   "register": "注册",
   "forget_password": "忘记密码？",
-  "login": "登录"
+  "login": "登录",
+  "read_agreement_prefix": "在您使用Futural robotics之前，请您认真阅读并理解",
+  "user_agreement": "<用户协议>",
+  "and": "和",
+  "private_policy": "<隐私政策>",
+  "end_punctuation": "。",
+  "agree": "同意",
+  "reject": "拒绝"
 }
