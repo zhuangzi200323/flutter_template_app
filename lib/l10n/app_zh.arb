@@ -11,5 +11,13 @@
   "article": "美文",
   "tech": "科技",
   "finance": "财经",
-  "fishion": "时尚"
+  "fishion": "时尚",
+  "mail": "邮箱",
+  "pls_input_email": "请输入邮箱",
+  "pls_input_right_email": "请输入正确的邮箱",
+  "password": "密码",
+  "pls_input_password": "请输入密码",
+  "register": "注册",
+  "forget_password": "忘记密码？",
+  "login": "登录"
 }
