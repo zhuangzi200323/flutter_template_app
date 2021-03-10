@@ -20,6 +20,8 @@
   "register": "Register",
   "forget_password": "Forget password?",
   "login": "Login",
+  "agreement_policy_title": "User agreement and privacy policy reminder",
+  "agreement_policy_welcome": "Welcome to Futural robotics",
   "read_agreement_prefix": "Before you use Futural robotics, please read and understand carefully ",
   "user_agreement": "<User Agreement>",
   "and": " and ",

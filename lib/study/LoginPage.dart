@@ -65,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 Padding(padding: EdgeInsets.only(top: 20)),
                 Flexible(
-                    child: Text("用户协议和隐私政策提示", style: TextStyle(fontWeight: FontWeight.bold),)
+                    child: Text(AppLocalizations.of(context).agreement_policy_title, style: TextStyle(fontWeight: FontWeight.bold),)
                 ),
                 Padding(padding: EdgeInsets.only(top: 20)),
                 Row(
@@ -73,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     Padding(padding: EdgeInsets.only(left: 20)),
                     Flexible(
-                      child: Text("欢迎使用Futural robotics"),
+                      child: Text(AppLocalizations.of(context).agreement_policy_welcome),
                     ),
                     Padding(padding: EdgeInsets.only(left: 20)),
                   ],
