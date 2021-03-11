@@ -28,5 +28,8 @@
   "private_policy": "<隐私政策>",
   "end_punctuation": "。",
   "agree": "同意",
-  "reject": "拒绝"
+  "reject": "拒绝",
+  "get_email_verify_code": "获取邮箱验证码",
+  "new_user_register": "新用户注册",
+  "password_hint": "请设置6-20位的密码，含英文字母和数字"
 }

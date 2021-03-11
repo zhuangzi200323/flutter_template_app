@@ -1,0 +1,252 @@
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_template_app/utils/Constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+class RegisterPage extends StatefulWidget {
+  @override
+  _RegisterPageState createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+  Future<SharedPreferences> prefs = SharedPreferences.getInstance();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  FocusNode blankNode = FocusNode();
+  //定义controller
+  TextEditingController mailController = TextEditingController();
+  TextEditingController pwdController = TextEditingController();
+  bool showMailTextEditClearIcon = false;
+  bool showPwdTextEditClearIcon = false;
+  bool showPwd = false;
+
+  void mailTextEditValueChange(String value) {
+    setState(() {
+      showMailTextEditClearIcon = value.length > 0;
+    });
+  }
+
+  void pwdTextEditValueChange(String value) {
+    setState(() {
+      showPwdTextEditClearIcon = value.length > 0;
+    });
+  }
+
+  Widget getPwdIcons() {
+    return Container(
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            showPwdTextEditClearIcon ? IconButton(icon: Image.asset('images/close.png'),
+                onPressed: (){
+                  pwdController.clear();
+                  pwdTextEditValueChange("");
+                }) : SizedBox(),
+            IconButton(icon: showPwd ? Image.asset('images/eye_p.png') : Image.asset('images/eye.png'),
+                onPressed: (){
+                  setState(() {
+                    showPwd = !showPwd;
+                  });
+                })
+          ],
+        )
+    );
+  }
+
+  Future<void> saveUserAgreeLicense() async {
+    final SharedPreferences pref = await prefs;
+    pref.setBool(Constants.AGREE_LICENSE, true);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final double statusBarHeight = MediaQuery.of(context).padding.top;
+
+    return GestureDetector(
+      onTap: () {
+        //点击空白区域时隐藏输入法
+        FocusScope.of(context).requestFocus(blankNode);
+      },
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Padding(padding: EdgeInsets.only(top: statusBarHeight)),
+              Padding(padding: EdgeInsets.only(top: 5)),
+              Row(
+                children: [
+                  IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: (){
+                    Navigator.pop(context);
+                  }),
+                  Expanded(child: Text(AppLocalizations.of(context).new_user_register, textAlign: TextAlign.center,)),
+                  Visibility(//保证标题居中，只是占位
+                      visible: false,
+                      maintainState:true,
+                      maintainAnimation: true,
+                      maintainSize:true,
+                      child: IconButton(icon: Icon(Icons.arrow_back_ios, color: Colors.white,))
+                  ),
+                ],
+              ),
+              Padding(padding: EdgeInsets.only(top: 30)),
+              Column(
+                children: <Widget>[
+                  Form(
+                      key: formKey,
+                      child: Column(
+                          children: <Widget>[
+                            TextFormField(
+                              cursorColor: Colors.green,
+                              //autofocus: false,
+                              controller: mailController,
+                              keyboardType: TextInputType.emailAddress,
+                              onChanged: (value) {
+                                mailTextEditValueChange(value);
+                              },
+                              decoration: InputDecoration(
+                                contentPadding: EdgeInsets.only(left: 10, right: 10),
+                                labelText: AppLocalizations.of(context).mail,
+                                labelStyle: TextStyle(color: Colors.black),
+                                hintText: AppLocalizations.of(context).pls_input_email,
+                                hintStyle: TextStyle(color: Colors.grey),
+                                prefixIcon: Icon(Icons.mail),
+                                suffixIcon: showMailTextEditClearIcon ? IconButton(icon: Image.asset('images/close.png'),
+                                    onPressed: (){
+                                      mailController.clear();
+                                      mailTextEditValueChange("");
+                                    }) : null,
+                                focusedBorder: UnderlineInputBorder(  //选中时下边框颜色
+                                  borderSide: BorderSide(color: Colors.green),
+                                ),
+                              ),
+                              validator: (value) {
+                                RegExp reg = new RegExp(r'^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,6}$');
+                                if (!reg.hasMatch(value)) {
+                                  return AppLocalizations.of(context).pls_input_right_email;
+                                }
+                                return null;
+                              },
+                            ),
+                            Padding(padding: EdgeInsets.only(top: 20)),
+                            TextFormField(
+                              controller: pwdController,
+                              onChanged: (value) {
+                                pwdTextEditValueChange(value);
+                              },
+                              decoration: InputDecoration(
+                                contentPadding: EdgeInsets.only(left: 10, right: 10),
+                                labelText: AppLocalizations.of(context).password,
+                                labelStyle: TextStyle(color: Colors.black),
+                                hintText: AppLocalizations.of(context).pls_input_password,
+                                hintStyle: TextStyle(color: Colors.grey),
+                                prefixIcon: Icon(Icons.lock),
+                                suffixIcon: getPwdIcons(),
+                                focusedBorder: UnderlineInputBorder(  //选中时下边框颜色
+                                  borderSide: BorderSide(color: Colors.green),
+                                ),
+                              ),
+                              validator: (value) {
+                                RegExp reg = new RegExp(r'^(?!([a-zA-Z]+|\\d+)$)[a-zA-Z\\d]{6,20}$');
+                                if (!reg.hasMatch(value)) {
+                                  return AppLocalizations.of(context).password_hint;
+                                }
+                                return null;
+                              },
+                              obscureText: !showPwd,
+                            ),
+                          ]
+                      )
+                  ),
+                  Padding(padding: EdgeInsets.only(top: 30)),
+                  Row(
+                      children: <Widget>[
+                        SizedBox(width: 20,),
+                        Expanded(
+                            child: ElevatedButton(
+                                onPressed: () {
+                                  if (formKey.currentState.validate()) {
+                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                      content: Text('获取邮箱验证码功能，未完待续...'),
+                                    ));
+                                  }
+                                },
+                                style: ButtonStyle(
+                                  shape:MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))),
+                                ),
+                                child: Text(AppLocalizations.of(context).get_email_verify_code)
+                            )
+                        ),
+                        SizedBox(width: 20,),
+                      ]
+                  ),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Padding(padding: EdgeInsets.only(left: 20)),
+                      Expanded(
+                          child: Text("邮箱验证码已发送至")
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Padding(padding: EdgeInsets.only(left: 20)),
+                      Expanded(
+                          child: Text("test@134.com")
+                      )
+                    ],
+                  ),
+                  Padding(padding: EdgeInsets.only(top: 30)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(child: TextField(
+                        //textAlignVertical: TextAlignVertical.center,
+                        cursorWidth: 0,
+                        cursorHeight: 0,
+                        maxLength: 1,
+                        maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                        maxLines: 1,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.only(top: 0, bottom: 0),
+                          fillColor: Colors.grey[400],
+                          filled: true,
+                          counterText:"",//不显示长度提示字串，类似1/1
+                          enabledBorder: OutlineInputBorder( //未选中时候的颜色
+                            borderRadius: BorderRadius.circular(5.0),
+                            borderSide: BorderSide(color: Colors.grey,),
+                          ),
+                          focusedBorder: OutlineInputBorder( //选中时外边框颜色
+                            borderRadius: BorderRadius.circular(5.0),
+                            borderSide: BorderSide(color: Colors.green,),
+                          ),
+                        ),
+                      ), width: 40, height: 40,),
+                      Padding(padding: EdgeInsets.only(left: 20)),
+                      SizedBox(child: TextField(), width: 40, height: 40,),
+                      Padding(padding: EdgeInsets.only(left: 20)),
+                      SizedBox(child: TextField(), width: 40, height: 40,),
+                      Padding(padding: EdgeInsets.only(left: 20)),
+                      SizedBox(child: TextField(), width: 40, height: 40,),
+                      Padding(padding: EdgeInsets.only(left: 20)),
+                      SizedBox(child: TextField(), width: 40, height: 40,),
+                      Padding(padding: EdgeInsets.only(left: 20)),
+                      SizedBox(child: TextField(), width: 40, height: 40,),
+                    ],
+                  )
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

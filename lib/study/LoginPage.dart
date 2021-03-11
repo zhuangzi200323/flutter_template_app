@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_template_app/study/RegisterPage.dart';
 import 'package:flutter_template_app/utils/Constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -194,6 +195,7 @@ class _LoginPageState extends State<LoginPage> {
                           cursorColor: Colors.green,
                           //autofocus: false,
                           controller: mailController,
+                          keyboardType: TextInputType.emailAddress,
                           onChanged: (value) {
                             mailTextEditValueChange(value);
                           },
@@ -255,9 +257,9 @@ class _LoginPageState extends State<LoginPage> {
                       TextButton(
                         child: Text(AppLocalizations.of(context).register),
                         onPressed: () {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text('注册功能，未完待续...'),
-                          ));
+                          Navigator.push(context, MaterialPageRoute(builder:(context) {
+                            return RegisterPage();
+                          }));
                         },
                       ),
                       Expanded(child: SizedBox()),

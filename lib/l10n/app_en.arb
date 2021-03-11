@@ -28,5 +28,8 @@
   "private_policy": "<Private Policy>",
   "end_punctuation": ".",
   "agree": "Agree",
-  "reject": "Reject"
+  "reject": "Reject",
+  "get_email_verify_code": "Get email verification code",
+  "new_user_register": "New User Registration",
+  "password_hint": "Please set a password of 6-20 digits, including English letters and numbers"
 }
