@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template_app/study/UnderlineVerifyCode.dart';
 import 'package:flutter_template_app/study/LoginPage.dart';
+import 'package:flutter_template_app/study/RegisterPage.dart';
+import 'package:flutter_template_app/study/VerifyCodePage1.dart';
+import 'package:flutter_template_app/study/VerifyCodePage2.dart';
 
 class RobotPage extends StatelessWidget {
   @override
@@ -18,6 +22,38 @@ class RobotPage extends StatelessWidget {
                     }));
                   },
                 ),
+                ElevatedButton(
+                  child: Text("RegisterPage"),
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder:(context) {
+                      return RegisterPage();
+                    }));
+                  },
+                ),
+                ElevatedButton(
+                  child: Text("VerifyCodePage1"),
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder:(context) {
+                      return VerifyCodePage1();
+                    }));
+                  },
+                ),
+                ElevatedButton(
+                  child: Text("VerifyCodePage2"),
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder:(context) {
+                      return VerifyCodePage2();
+                    }));
+                  },
+                ),
+                // ElevatedButton(
+                //   child: Text("CodeInputTextField"),
+                //   onPressed: () {
+                //     Navigator.push(context, MaterialPageRoute(builder:(context) {
+                //       return CodeInputTextField();
+                //     }));
+                //   },
+                // ),
               ]
           ),
       ),
