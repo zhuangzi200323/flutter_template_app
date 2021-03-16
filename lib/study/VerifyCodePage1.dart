@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_template_app/generated/l10n.dart';
 import 'package:flutter_template_app/utils/Constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -71,7 +71,7 @@ class _VerifyCodePageState extends State<VerifyCodePage1> {
                   IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: (){
                     Navigator.pop(context);
                   }),
-                  Expanded(child: Text(AppLocalizations.of(context).new_user_register, textAlign: TextAlign.center,)),
+                  Expanded(child: Text(S.of(context).new_user_register, textAlign: TextAlign.center,)),
                   Visibility(//保证标题居中，只是占位
                       visible: false,
                       maintainState:true,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_template_app/generated/l10n.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -19,14 +19,14 @@ class _HomePageState extends State<HomePage>
 
   initTabData() {
     tabList = [
-      new TabTitle(AppLocalizations.of(context).recommend, 0),
-      new TabTitle(AppLocalizations.of(context).social, 1),
-      new TabTitle(AppLocalizations.of(context).entertainment, 2),
-      new TabTitle(AppLocalizations.of(context).sport, 3),
-      new TabTitle(AppLocalizations.of(context).article, 4),
-      new TabTitle(AppLocalizations.of(context).tech, 5),
-      new TabTitle(AppLocalizations.of(context).finance, 6),
-      new TabTitle(AppLocalizations.of(context).fishion, 7),
+      new TabTitle(S.of(context).recommend, 0),
+      new TabTitle(S.of(context).social, 1),
+      new TabTitle(S.of(context).entertainment, 2),
+      new TabTitle(S.of(context).sport, 3),
+      new TabTitle(S.of(context).article, 4),
+      new TabTitle(S.of(context).tech, 5),
+      new TabTitle(S.of(context).finance, 6),
+      new TabTitle(S.of(context).fishion, 7),
     ];
   }
 

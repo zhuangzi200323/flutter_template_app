@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_template_app/generated/l10n.dart';
 import 'package:flutter_template_app/robot_page.dart';
 import 'package:flutter_template_app/home_page.dart';
 import 'package:flutter_template_app/mine_page.dart';
@@ -16,16 +16,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       localizationsDelegates: [
-        AppLocalizations.delegate,
+        S.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: [
-        const Locale('en', ''), // English, no country code
-        const Locale('zh', ''), // China, no country code
-      ],
-      onGenerateTitle: (BuildContext context) => AppLocalizations.of(context).app_title,
+      supportedLocales: S.delegate.supportedLocales,
+      localeListResolutionCallback: (locales, supportLocales){
+        print(locales);
+        return;
+      },
+      onGenerateTitle: (BuildContext context) => S.of(context).app_title,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -75,7 +76,7 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       appBar: AppBar(
         //导航栏
-        title: Text(AppLocalizations.of(context).app_title),
+        title: Text(S.of(context).app_title),
         centerTitle: true,
         actions: <Widget>[
           //导航栏右侧菜单
@@ -91,13 +92,13 @@ class _MainPageState extends State<MainPage> {
           ) :
           Image.asset('images/home_n.png',
             gaplessPlayback: true,
-          ), label: AppLocalizations.of(context).home),
+          ), label: S.of(context).home),
           BottomNavigationBarItem(
-              icon: Icon(Icons.business), label: AppLocalizations.of(context).robot),
+              icon: Icon(Icons.business), label: S.of(context).robot),
           BottomNavigationBarItem(
-              icon: Icon(Icons.school), label: AppLocalizations.of(context).discovery),
+              icon: Icon(Icons.school), label: S.of(context).discovery),
           BottomNavigationBarItem(
-              icon: Icon(Icons.person), label: AppLocalizations.of(context).mine),
+              icon: Icon(Icons.person), label: S.of(context).mine),
         ],
         type: BottomNavigationBarType.fixed,
         currentIndex: selectedIndex,

@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_template_app/generated/l10n.dart';
 import 'package:flutter_template_app/study/RegisterPage.dart';
 import 'package:flutter_template_app/utils/Constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -66,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 Padding(padding: EdgeInsets.only(top: 20)),
                 Flexible(
-                    child: Text(AppLocalizations.of(context).agreement_policy_title, style: TextStyle(fontWeight: FontWeight.bold),)
+                    child: Text(S.of(context).agreement_policy_title, style: TextStyle(fontWeight: FontWeight.bold),)
                 ),
                 Padding(padding: EdgeInsets.only(top: 20)),
                 Row(
@@ -74,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     Padding(padding: EdgeInsets.only(left: 20)),
                     Flexible(
-                      child: Text(AppLocalizations.of(context).agreement_policy_welcome),
+                      child: Text(S.of(context).agreement_policy_welcome),
                     ),
                     Padding(padding: EdgeInsets.only(left: 20)),
                   ],
@@ -88,22 +88,22 @@ class _LoginPageState extends State<LoginPage> {
                       child:
                       Text.rich(
                         TextSpan(children: [
-                          TextSpan(text: AppLocalizations.of(context).read_agreement_prefix),
-                          TextSpan(text: AppLocalizations.of(context).user_agreement,
+                          TextSpan(text: S.of(context).read_agreement_prefix),
+                          TextSpan(text: S.of(context).user_agreement,
                               style: TextStyle(color: Colors.blue),
                               recognizer: TapGestureRecognizer()..onTap = () {
                                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                   content: Text('用户协议，未完待续...'),
                                 ));
                               }),
-                          TextSpan(text: AppLocalizations.of(context).and),
-                          TextSpan(text: AppLocalizations.of(context).private_policy, style: TextStyle(color: Colors.blue),
+                          TextSpan(text: S.of(context).and),
+                          TextSpan(text: S.of(context).private_policy, style: TextStyle(color: Colors.blue),
                               recognizer: TapGestureRecognizer()..onTap = () {
                                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                   content: Text('隐私政策，未完待续...'),
                                 ));
                               }),
-                          TextSpan(text: AppLocalizations.of(context).end_punctuation),
+                          TextSpan(text: S.of(context).end_punctuation),
                         ]
                         ),
                       ),
@@ -121,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
                           onPressed: (){
                             SystemChannels.platform.invokeMethod('SystemNavigator.pop');
                           },
-                          child: Text(AppLocalizations.of(context).reject),
+                          child: Text(S.of(context).reject),
                           style: ButtonStyle(
                             shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))),
                             backgroundColor: MaterialStateProperty.all(Colors.yellow[700]),
@@ -136,7 +136,7 @@ class _LoginPageState extends State<LoginPage> {
                             saveUserAgreeLicense();
                             Navigator.pop(context);
                           },
-                          child: Text(AppLocalizations.of(context).agree),
+                          child: Text(S.of(context).agree),
                           style: ButtonStyle(
                             shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))),
                             backgroundColor: MaterialStateProperty.all(Colors.green[600]),
@@ -201,9 +201,9 @@ class _LoginPageState extends State<LoginPage> {
                           },
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(left: 10, right: 10),
-                            labelText: AppLocalizations.of(context).mail,
+                            labelText: S.of(context).mail,
                             labelStyle: TextStyle(color: Colors.black),
-                            hintText: AppLocalizations.of(context).pls_input_email,
+                            hintText: S.of(context).pls_input_email,
                             hintStyle: TextStyle(color: Colors.grey),
                             prefixIcon: Icon(Icons.mail),
                             suffixIcon: showMailTextEditClearIcon ? IconButton(icon: Image.asset('images/close.png'),
@@ -218,7 +218,7 @@ class _LoginPageState extends State<LoginPage> {
                           validator: (value) {
                             RegExp reg = new RegExp(r'^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,6}$');
                             if (!reg.hasMatch(value)) {
-                              return AppLocalizations.of(context).pls_input_right_email;
+                              return S.of(context).pls_input_right_email;
                             }
                             return null;
                           },
@@ -231,9 +231,9 @@ class _LoginPageState extends State<LoginPage> {
                           },
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(left: 10, right: 10),
-                            labelText: AppLocalizations.of(context).password,
+                            labelText: S.of(context).password,
                             labelStyle: TextStyle(color: Colors.black),
-                            hintText: AppLocalizations.of(context).pls_input_password,
+                            hintText: S.of(context).pls_input_password,
                             hintStyle: TextStyle(color: Colors.grey),
                             prefixIcon: Icon(Icons.lock),
                             suffixIcon: getPwdIcons(),
@@ -243,7 +243,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           validator: (value) {
                             if (value.isEmpty) {
-                              return AppLocalizations.of(context).pls_input_password;
+                              return S.of(context).pls_input_password;
                             }
                             return null;
                           },
@@ -255,7 +255,7 @@ class _LoginPageState extends State<LoginPage> {
                   Row(
                     children: <Widget>[
                       TextButton(
-                        child: Text(AppLocalizations.of(context).register),
+                        child: Text(S.of(context).register),
                         onPressed: () {
                           Navigator.push(context, MaterialPageRoute(builder:(context) {
                             return RegisterPage();
@@ -265,7 +265,7 @@ class _LoginPageState extends State<LoginPage> {
                       Expanded(child: SizedBox()),
                       TextButton(
                         style: ButtonStyle(alignment: Alignment.centerRight),
-                        child: Text(AppLocalizations.of(context).forget_password),
+                        child: Text(S.of(context).forget_password),
                         onPressed: () {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text('忘记密码功能，未完待续...'),
@@ -289,7 +289,7 @@ class _LoginPageState extends State<LoginPage> {
                               style: ButtonStyle(
                                 shape:MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))),
                               ),
-                              child: Text(AppLocalizations.of(context).login)
+                              child: Text(S.of(context).login)
                           )
                       ),
                       SizedBox(width: 20,),

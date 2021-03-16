@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_template_app/generated/l10n.dart';
 
 class DiscoveryPage extends StatelessWidget {
   @override
@@ -7,7 +7,7 @@ class DiscoveryPage extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.white,
         body: Center(
-          child: Text(AppLocalizations.of(context).discovery),
+          child: Text(S.of(context).discovery),
         ),
     );
   }

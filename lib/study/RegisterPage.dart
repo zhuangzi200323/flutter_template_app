@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_template_app/generated/l10n.dart';
 import 'package:flutter_template_app/utils/Constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -80,7 +80,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: (){
                     Navigator.pop(context);
                   }),
-                  Expanded(child: Text(AppLocalizations.of(context).new_user_register, textAlign: TextAlign.center,)),
+                  Expanded(child: Text(S.of(context).new_user_register, textAlign: TextAlign.center,)),
                   Visibility(//保证标题居中，只是占位
                       visible: false,
                       maintainState:true,
@@ -107,9 +107,9 @@ class _RegisterPageState extends State<RegisterPage> {
                               },
                               decoration: InputDecoration(
                                 contentPadding: EdgeInsets.only(left: 10, right: 10),
-                                labelText: AppLocalizations.of(context).mail,
+                                labelText: S.of(context).mail,
                                 labelStyle: TextStyle(color: Colors.black),
-                                hintText: AppLocalizations.of(context).pls_input_email,
+                                hintText: S.of(context).pls_input_email,
                                 hintStyle: TextStyle(color: Colors.grey),
                                 prefixIcon: Icon(Icons.mail),
                                 suffixIcon: showMailTextEditClearIcon ? IconButton(icon: Image.asset('images/close.png'),
@@ -124,7 +124,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               validator: (value) {
                                 RegExp reg = new RegExp(r'^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,6}$');
                                 if (!reg.hasMatch(value)) {
-                                  return AppLocalizations.of(context).pls_input_right_email;
+                                  return S.of(context).pls_input_right_email;
                                 }
                                 return null;
                               },
@@ -137,9 +137,9 @@ class _RegisterPageState extends State<RegisterPage> {
                               },
                               decoration: InputDecoration(
                                 contentPadding: EdgeInsets.only(left: 10, right: 10),
-                                labelText: AppLocalizations.of(context).password,
+                                labelText: S.of(context).password,
                                 labelStyle: TextStyle(color: Colors.black),
-                                hintText: AppLocalizations.of(context).pls_input_password,
+                                hintText: S.of(context).pls_input_password,
                                 hintStyle: TextStyle(color: Colors.grey),
                                 prefixIcon: Icon(Icons.lock),
                                 suffixIcon: getPwdIcons(),
@@ -150,7 +150,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               validator: (value) {
                                 RegExp reg = new RegExp(r'^(?!([a-zA-Z]+|\\d+)$)[a-zA-Z\\d]{6,20}$');
                                 if (!reg.hasMatch(value)) {
-                                  return AppLocalizations.of(context).password_hint;
+                                  return S.of(context).password_hint;
                                 }
                                 return null;
                               },
@@ -175,7 +175,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 style: ButtonStyle(
                                   shape:MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))),
                                 ),
-                                child: Text(AppLocalizations.of(context).get_email_verify_code)
+                                child: Text(S.of(context).get_email_verify_code)
                             )
                         ),
                         SizedBox(width: 20,),

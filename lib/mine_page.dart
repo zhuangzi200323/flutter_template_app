@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_template_app/generated/l10n.dart';
 
 class MinePage extends StatelessWidget {
   @override
@@ -7,7 +7,7 @@ class MinePage extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.white,
         body: Center(
-          child: Text(AppLocalizations.of(context).mine),
+          child: Text(S.of(context).mine),
         ),
     );
   }
