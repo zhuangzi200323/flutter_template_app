@@ -1,7 +1,12 @@
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_template_app/generated/json/author2_entity_helper.dart';
+import 'package:flutter_template_app/generated/json/base/json_convert_content.dart';
 import 'package:flutter_template_app/generated/l10n.dart';
+import 'package:flutter_template_app/json/Author.dart';
+import 'package:flutter_template_app/json/author2_entity.dart';
 import 'package:flutter_template_app/themeAndLocal/CurrentLocale.dart';
 import 'package:flutter_template_app/themeAndLocal/ThemeModel.dart';
 import 'package:provider/provider.dart';
@@ -72,6 +77,10 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
+    Map<String, dynamic> jsonMap = json.decode('{\"name\": \"jack\",\"title\": \"test\",\"id\": 2}');
+    Author2Entity fromJsonAsT = JsonConvert.fromJsonAsT<Author2Entity>(jsonMap);
+    Author author = Author.fromJson(jsonMap);
+
     if(controller == null){
       controller = TabController(
         initialIndex: selectIndex,
