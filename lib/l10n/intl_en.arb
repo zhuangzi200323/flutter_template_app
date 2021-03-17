@@ -31,5 +31,15 @@
   "reject": "Reject",
   "get_email_verify_code": "Get email verification code",
   "new_user_register": "New User Registration",
-  "password_hint": "Please set a password of 6-20 digits, including English letters and numbers"
+  "password_hint": "Please set a password of 6-20 digits, including English letters and numbers",
+  "theme_set": "Select theme",
+  "lang_set": "Select language",
+  "pls_select_lang": "Please select language",
+  "pls_select_theme": "Please select theme",
+  "zh_cn": "Chinese",
+  "en_us": "English",
+  "blue": "Blue",
+  "purple": "Purple",
+  "pink": "Pink",
+  "deep_pink": "deep pink"
 }

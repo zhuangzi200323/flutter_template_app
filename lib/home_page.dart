@@ -1,11 +1,21 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_template_app/generated/l10n.dart';
+import 'package:flutter_template_app/themeAndLocal/CurrentLocale.dart';
+import 'package:flutter_template_app/themeAndLocal/ThemeModel.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
+  HomePage({Key key, this.currentLocale}) : super(key: key);
+
+  CurrentLocale currentLocale;
+
   @override
   _HomePageState createState() => _HomePageState();
 }
 
+Locale preLocale;
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   TabController controller;
@@ -15,6 +25,7 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
+    print('initState');
   }
 
   initTabData() {
@@ -37,10 +48,30 @@ class _HomePageState extends State<HomePage>
   }
 
   @override
-  Widget build(BuildContext context) {
-    if(tabList == null || tabList.isEmpty) {
+  void didUpdateWidget(covariant HomePage oldWidget) {
+    print('didUpdateWidget');
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void didChangeDependencies() {
+    print('didChangeDependencies');
+    if(tabList == null || tabList.isEmpty || preLocale != widget.currentLocale.value) {
+      preLocale = widget.currentLocale.value;
       initTabData();
+      print("initTabData");
     }
+    super.didChangeDependencies();
+  }
+
+  @override
+  void deactivate() {
+    print('deactivate');
+    super.deactivate();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     if(controller == null){
       controller = TabController(
         initialIndex: selectIndex,
@@ -74,14 +105,145 @@ class _HomePageState extends State<HomePage>
               child: TabBarView(
                 controller: controller,
                 children: tabList.map((item) {
-                  return Center(
-                    child: Text(item.title),
+                  return Scrollbar(
+                    child: ListView(
+                      children: [
+                        Text(item.title, textAlign: TextAlign.center,),
+                        InkWell(
+                          child:Card(
+                            child: ListTile(
+                              title: Text(S.of(context).theme_set),
+                              trailing: Icon(Icons.arrow_right),
+                            ),
+                          ),
+                          onTap: () async {
+                            int i = await showDialog<int>(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return SimpleDialog(
+                                    title: Text(S.of(context).pls_select_theme),
+                                    children: <Widget>[
+                                      SimpleDialogOption(
+                                        onPressed: () {
+                                          // 返回1
+                                          Navigator.pop(context, 1);
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(vertical: 6),
+                                          child: Text(S.of(context).blue),
+                                        ),
+                                      ),
+                                      SimpleDialogOption(
+                                        onPressed: () {
+                                          // 返回2
+                                          Navigator.pop(context, 2);
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(vertical: 6),
+                                          child: Text(S.of(context).purple),
+                                        ),
+                                      ),
+                                      SimpleDialogOption(
+                                        onPressed: () {
+                                          // 返回2
+                                          Navigator.pop(context, 3);
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(vertical: 6),
+                                          child: Text(S.of(context).pink),
+                                        ),
+                                      ),
+                                      SimpleDialogOption(
+                                        onPressed: () {
+                                          // 返回2
+                                          Navigator.pop(context, 4);
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(vertical: 6),
+                                          child: Text(S.of(context).deep_pink),
+                                        ),
+                                      ),
+                                    ],
+                                  );
+                                });
+
+                            if (i != null) {
+                              if(i==1) {
+                                Provider.of<ThemeModel>(context,listen: false).setTheme('blue');
+                              } else if(i==2) {
+                                Provider.of<ThemeModel>(context,listen: false).setTheme('purple');
+                              } else if(i==3) {
+                                Provider.of<ThemeModel>(context,listen: false).setTheme('pink');
+                              } else if(i==4) {
+                                Provider.of<ThemeModel>(context,listen: false).setTheme('deeppink');
+                              }
+                            }
+                          },
+                        ),
+                        InkWell(
+                          child:Card(
+                            child: ListTile(
+                              title: Text(S.of(context).lang_set),
+                              trailing: Icon(Icons.arrow_right),
+                            ),
+                          ),
+                          onTap: () async
+                          {
+                            int i = await showDialog<int>(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return SimpleDialog(
+                                    title: Text(S.of(context).pls_select_theme),
+                                    children: <Widget>[
+                                      SimpleDialogOption(
+                                        onPressed: () {
+                                          // 返回1
+                                          Navigator.pop(context, 1);
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(vertical: 6),
+                                          child: const Text('中文简体'),
+                                        ),
+                                      ),
+                                      SimpleDialogOption(
+                                        onPressed: () {
+                                          // 返回2
+                                          Navigator.pop(context, 2);
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(vertical: 6),
+                                          child: const Text('English'),
+                                        ),
+                                      ),
+                                    ],
+                                  );
+                                });
+
+                            if (i != null) {
+                              if(i==1) {
+                                Provider.of<CurrentLocale>(context,listen: false).setLocale(const Locale('zh',"CH"));//更改语言
+                              } else {
+                                Provider.of<CurrentLocale>(context,listen: false).setLocale(const Locale('en',"US"));
+                              }
+                            }
+                          },
+                        ),
+                        Column(
+                          children: [
+                            Text(S.of(context).get_email_verify_code),
+                            Text(S.of(context).new_user_register),
+                            Text(S.of(context).password_hint),
+                          ],
+                        ),
+                      ],
+                    ),
                   );
                 }).toList(),
               ),
             )
           ],
-        ));
+        )
+    );
   }
 }
 

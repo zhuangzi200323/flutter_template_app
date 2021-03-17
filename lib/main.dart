@@ -5,37 +5,55 @@ import 'package:flutter_template_app/robot_page.dart';
 import 'package:flutter_template_app/home_page.dart';
 import 'package:flutter_template_app/mine_page.dart';
 import 'package:flutter_template_app/discovery_page.dart';
+import 'package:flutter_template_app/themeAndLocal/CurrentLocale.dart';
+import 'package:flutter_template_app/themeAndLocal/Theme.dart';
+import 'package:flutter_template_app/themeAndLocal/ThemeModel.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (context)=>ThemeModel()), //主题
+          ChangeNotifierProvider(create: (context)=>CurrentLocale())//语言状态注册
+        ],
+        child: MyApp()
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      localizationsDelegates: [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: S.delegate.supportedLocales,
-      localeListResolutionCallback: (locales, supportLocales){
-        print(locales);
-        return;
-      },
-      onGenerateTitle: (BuildContext context) => S.of(context).app_title,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MainPage(),
-    );
+    return Consumer2<ThemeModel, CurrentLocale>(   //主题设置1：状态获取方式
+        builder: (context, themeModel, currentLocale, child) {
+          return MaterialApp(
+            localizationsDelegates: [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
+            localeListResolutionCallback: (locales, supportLocales){
+              print("###" + locales.toString());
+              return;
+            },
+            onGenerateTitle: (BuildContext context) => S.of(context).app_title,
+            locale: currentLocale.value,
+            theme: AppTheme.getThemeData(themeModel.value),
+            home: MainPage(currentLocale: currentLocale),
+          );
+        });
   }
 }
 
 class MainPage extends StatefulWidget {
+  MainPage({Key key, this.currentLocale}) : super(key: key);
+
+  CurrentLocale currentLocale;
+
   @override
   _MainPageState createState() => _MainPageState();
 }
@@ -56,7 +74,7 @@ class _MainPageState extends State<MainPage> {
 
   Widget getPage() {
     if (selectedIndex == 0) {
-      return HomePage();
+      return HomePage(currentLocale: widget.currentLocale);
     } else if (selectedIndex == 1) {
       return RobotPage();
     } else if (selectedIndex == 2) {

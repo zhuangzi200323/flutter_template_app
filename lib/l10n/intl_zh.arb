@@ -31,5 +31,15 @@
   "reject": "拒绝",
   "get_email_verify_code": "获取邮箱验证码",
   "new_user_register": "新用户注册",
-  "password_hint": "请设置6-20位的密码，含英文字母和数字"
+  "password_hint": "请设置6-20位的密码，含英文字母和数字",
+  "theme_set": "主题选择",
+  "lang_set": "语言选择",
+  "pls_select_lang": "请选择语言",
+  "pls_select_theme": "请选择主题",
+  "zh_cn": "中文简体",
+  "en_us": "美国英语",
+  "blue": "蓝色",
+  "purple": "紫色",
+  "pink": "粉色",
+  "deep_pink": "深粉"
 }

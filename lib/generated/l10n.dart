@@ -364,6 +364,106 @@ class S {
       args: [],
     );
   }
+
+  /// `Select theme`
+  String get theme_set {
+    return Intl.message(
+      'Select theme',
+      name: 'theme_set',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select language`
+  String get lang_set {
+    return Intl.message(
+      'Select language',
+      name: 'lang_set',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select language`
+  String get pls_select_lang {
+    return Intl.message(
+      'Please select language',
+      name: 'pls_select_lang',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select theme`
+  String get pls_select_theme {
+    return Intl.message(
+      'Please select theme',
+      name: 'pls_select_theme',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Chinese`
+  String get zh_cn {
+    return Intl.message(
+      'Chinese',
+      name: 'zh_cn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `English`
+  String get en_us {
+    return Intl.message(
+      'English',
+      name: 'en_us',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Blue`
+  String get blue {
+    return Intl.message(
+      'Blue',
+      name: 'blue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Purple`
+  String get purple {
+    return Intl.message(
+      'Purple',
+      name: 'purple',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pink`
+  String get pink {
+    return Intl.message(
+      'Pink',
+      name: 'pink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `deep pink`
+  String get deep_pink {
+    return Intl.message(
+      'deep pink',
+      name: 'deep_pink',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
