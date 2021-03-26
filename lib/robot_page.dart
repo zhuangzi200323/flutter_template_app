@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template_app/study/CameraExampleHome.dart';
 import 'package:flutter_template_app/study/LoginPage.dart';
 import 'package:flutter_template_app/study/RegisterPage.dart';
 import 'package:flutter_template_app/study/VerifyCodePage1.dart';
 import 'package:flutter_template_app/study/VerifyCodePage2.dart';
+import 'package:flutter_template_app/study/WebViewExample.dart';
 
 class RobotPage extends StatelessWidget {
   @override
@@ -45,14 +47,22 @@ class RobotPage extends StatelessWidget {
                     }));
                   },
                 ),
-                // ElevatedButton(
-                //   child: Text("CodeInputTextField"),
-                //   onPressed: () {
-                //     Navigator.push(context, MaterialPageRoute(builder:(context) {
-                //       return CodeInputTextField();
-                //     }));
-                //   },
-                // ),
+                ElevatedButton(
+                  child: Text("WebViewExample"),
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder:(context) {
+                      return WebViewExample();
+                    }));
+                  },
+                ),
+                ElevatedButton(
+                  child: Text("CameraExampleHome"),
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder:(context) {
+                      return CameraExampleHome();
+                    }));
+                  },
+                ),
               ]
           ),
       ),
