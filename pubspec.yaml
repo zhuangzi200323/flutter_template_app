@@ -33,9 +33,14 @@ dependencies:
   provider: ^5.0.0
   webview_flutter: ^2.0.2
   camera: ^0.8.0
-  video_player: ^2.0.2
+  video_player: ^2.1.1
   path_provider: ^2.0.1
   path: ^1.8.0
+  screen: ^0.0.5
+  common_utils: ^2.0.2
+  auto_orientation: ^2.0.0
+  flutter_seekbar:
+    git: https://github.com/LiuC520/flutter_seekbar.git
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +75,7 @@ flutter:
     - images/2.0x/
     - images/3.0x/
     - images/4.0x/
+    - mp4/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
