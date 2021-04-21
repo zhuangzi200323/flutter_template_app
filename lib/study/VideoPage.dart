@@ -109,7 +109,7 @@ class _VideoPageState extends State<VideoPage> {
                 children: [
                   GestureDetector(
                     child: VideoPlayer(_controller),
-                    onTap: ()=>stopVideo(),
+                    onTap: ()=>_controller.value.isPlaying ? stopVideo() : playVideo(),
                   ),
                   // Align(
                   //   child: Image.asset("images/close.png"),
