@@ -96,73 +96,57 @@ class _VideoPageState extends State<VideoPage> {
             padding: EdgeInsets.all(10),
             //width: MediaQuery.of(context).size.width,
             height: 300,
-            // decoration: BoxDecoration(
-            //   image: DecorationImage(
-            //     fit: BoxFit.fill,
-            //     image: AssetImage("images/machine_bg.png"),
-            //   ),
-            // ),
             alignment: Alignment.bottomCenter,
-            child: AspectRatio(
-              aspectRatio: 1280/720,
-              child: Stack(
-                children: [
-                  GestureDetector(
-                    child: VideoPlayer(_controller),
-                    onTap: ()=>_controller.value.isPlaying ? stopVideo() : playVideo(),
-                  ),
-                  // Align(
-                  //   child: Image.asset("images/close.png"),
-                  //   alignment: Alignment.topLeft,
-                  // ),
-                  // Align(
-                  //   child: Image.asset("images/close.png"),
-                  //   alignment: Alignment.topRight,
-                  // ),
-                  // Align(
-                  //   child: Image.asset("images/close.png"),
-                  //   alignment: Alignment.bottomLeft,
-                  // ),
-                  // Align(
-                  //   child: Image.asset("images/close.png"),
-                  //   alignment: Alignment.bottomRight,
-                  // ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      padding: EdgeInsets.only(left: 8, right: 8, bottom: 5),
-                      child: SeekBar(
-                        backgroundColor: Color.fromRGBO(0, 0, 0, 0.4),
-                        progressColor: Color.fromRGBO(0, 0, 0, 0.7),
-                        indicatorColor: Colors.grey[350],
-                        value: progress,
-                        onValueChanged: (value){
-                          print("####### ${value}");
-                          _controller.seekTo(Duration(milliseconds: (value.progress*_controller.value.duration.inMilliseconds).toInt()));
-                          progress = value.value;
-                        },
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: _controller.value.isPlaying ? Container() : GestureDetector(
-                      child: Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Color.fromRGBO(0, 0, 0, 0.5),
+            child: Hero(
+                tag: "player",
+                child: AspectRatio(
+                    aspectRatio: 1280/720,
+                    child: Stack(
+                      children: [
+                        GestureDetector(
+                          child: VideoPlayer(_controller),
+                          onTap: ()=>_controller.value.isPlaying ? stopVideo() : playVideo(),
                         ),
-                        child: Icon(Icons.play_arrow, color: Colors.white,),
-                      ),
-                      onTap: ()=> playVideo(),
-                    ),
-                  ),
-                ],
-              )
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Container(
+                            padding: EdgeInsets.only(left: 8, right: 8, bottom: 5),
+                            child: SeekBar(
+                              backgroundColor: Color.fromRGBO(0, 0, 0, 0.4),
+                              progressColor: Color.fromRGBO(0, 0, 0, 0.7),
+                              indicatorColor: Colors.grey[350],
+                              value: progress,
+                              onValueChanged: (value){
+                                print("####### ${value}");
+                                _controller.seekTo(Duration(milliseconds: (value.progress*_controller.value.duration.inMilliseconds).toInt()));
+                                progress = value.value;
+                              },
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.center,
+                          child: _controller.value.isPlaying ? Container() : GestureDetector(
+                            child: Container(
+                              width: 40,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Color.fromRGBO(0, 0, 0, 0.5),
+                              ),
+                              child: Icon(Icons.play_arrow, color: Colors.white,),
+                            ),
+                            onTap: ()=> playVideo(),
+                          ),
+                        ),
+                      ],
+                    )
+                )
             ),
           ),
+          ElevatedButton(onPressed: (){
+            Navigator.pushNamed(context, "VideoFullPage", arguments:{"controller": _controller});
+          }, child: Text("全屏")),
         ]
       ),
     );

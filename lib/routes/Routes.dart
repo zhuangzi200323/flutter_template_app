@@ -4,6 +4,7 @@ import 'package:flutter_template_app/study/LoginPage.dart';
 import 'package:flutter_template_app/study/RegisterPage.dart';
 import 'package:flutter_template_app/study/VerifyCodePage1.dart';
 import 'package:flutter_template_app/study/VerifyCodePage2.dart';
+import 'package:flutter_template_app/study/VideoFullPage.dart';
 import 'package:flutter_template_app/study/VideoPage.dart';
 import 'package:flutter_template_app/study/WebViewExample.dart';
 
@@ -16,6 +17,7 @@ final routes = {
   "WebViewExample":(context, {arguments})=>WebViewExample(),
   "CameraExampleHome":(context, {arguments})=>CameraExampleHome(),
   "VideoPage":(context, {arguments})=>VideoPage(),
+  "VideoFullPage":(context, {arguments})=>VideoFullPage(arguments: arguments),
 };
 
 //路由跳转，可转参数
