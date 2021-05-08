@@ -41,5 +41,15 @@
   "blue": "蓝色",
   "purple": "紫色",
   "pink": "粉色",
-  "deep_pink": "深粉"
+  "deep_pink": "深粉",
+  "scan_code": "扫码",
+  "manual_input": "手动输入",
+  "pls_input_robot_recognize_code": "请输入机器人识别码",
+  "char_and_num_code": "字母和数字编码",
+  "ok": "确认",
+  "recognize_code_scan_hint": "请将机器人识别条码置于扫描框内",
+  "recognize_fail": "识别失败",
+  "pls_scan_right_recognize_code": "请扫描正确的机器人识别码",
+  "retry": "重试",
+  "back": "返回"
 }

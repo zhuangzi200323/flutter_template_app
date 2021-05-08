@@ -41,5 +41,15 @@
   "blue": "Blue",
   "purple": "Purple",
   "pink": "Pink",
-  "deep_pink": "deep pink"
+  "deep_pink": "deep pink",
+  "scan_code": "Scan code",
+  "manual_input": "Manual input",
+  "pls_input_robot_recognize_code": "Please enter the robot identification code",
+  "char_and_num_code": "Letter and number code",
+  "ok": "Ok",
+  "recognize_code_scan_hint": "Please place the robot recognition barcode in the scan box",
+  "recognize_fail": "Recognition failed",
+  "pls_scan_right_recognize_code": "Please scan the correct robot recognition code",
+  "retry": "Retry",
+  "back": "Back"
 }

@@ -41,6 +41,8 @@ dependencies:
   auto_orientation: ^2.0.0
   flutter_seekbar:
     git: https://github.com/LiuC520/flutter_seekbar.git
+  scan: ^1.4.3
+  fluttertoast: ^8.0.6
 
 dev_dependencies:
   flutter_test:

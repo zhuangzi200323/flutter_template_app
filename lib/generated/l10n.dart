@@ -464,6 +464,106 @@ class S {
       args: [],
     );
   }
+
+  /// `Scan code`
+  String get scan_code {
+    return Intl.message(
+      'Scan code',
+      name: 'scan_code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manual input`
+  String get manual_input {
+    return Intl.message(
+      'Manual input',
+      name: 'manual_input',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter the robot identification code`
+  String get pls_input_robot_recognize_code {
+    return Intl.message(
+      'Please enter the robot identification code',
+      name: 'pls_input_robot_recognize_code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Letter and number code`
+  String get char_and_num_code {
+    return Intl.message(
+      'Letter and number code',
+      name: 'char_and_num_code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ok`
+  String get ok {
+    return Intl.message(
+      'Ok',
+      name: 'ok',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please place the robot recognition barcode in the scan box`
+  String get recognize_code_scan_hint {
+    return Intl.message(
+      'Please place the robot recognition barcode in the scan box',
+      name: 'recognize_code_scan_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recognition failed`
+  String get recognize_fail {
+    return Intl.message(
+      'Recognition failed',
+      name: 'recognize_fail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please scan the correct robot recognition code`
+  String get pls_scan_right_recognize_code {
+    return Intl.message(
+      'Please scan the correct robot recognition code',
+      name: 'pls_scan_right_recognize_code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Retry`
+  String get retry {
+    return Intl.message(
+      'Retry',
+      name: 'retry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back`
+  String get back {
+    return Intl.message(
+      'Back',
+      name: 'back',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
