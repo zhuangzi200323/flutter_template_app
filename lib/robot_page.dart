@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template_app/LoginPage.dart';
 import 'package:flutter_template_app/generated/l10n.dart';
 
 class RobotPage extends StatelessWidget {
@@ -6,8 +7,20 @@ class RobotPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: Text(S.of(context).robot),
+      body: SingleChildScrollView(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              ElevatedButton(
+                child: Text("LoginPage"),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder:(context) {
+                    return LoginPage();
+                  }));
+                },
+              ),
+            ]
+        ),
       ),
     );
   }
