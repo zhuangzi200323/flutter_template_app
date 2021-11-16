@@ -1,17 +1,16 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_template_app/Constants.dart';
-import 'package:flutter_template_app/RegisterPage.dart';
 import 'package:flutter_template_app/generated/l10n.dart';
+import 'package:flutter_template_app/Constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   Future<SharedPreferences> prefs = SharedPreferences.getInstance();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   FocusNode blankNode = FocusNode();
@@ -56,122 +55,14 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void showMyDlg(BuildContext context){
-    showDialog<bool>(context: context,
-        barrierDismissible: false,
-        builder: (context) {
-          return Dialog(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Padding(padding: EdgeInsets.only(top: 20)),
-                Flexible(
-                    child: Text(S.of(context).agreement_policy_title, style: TextStyle(fontWeight: FontWeight.bold),)
-                ),
-                Padding(padding: EdgeInsets.only(top: 20)),
-                Row(
-                  //mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Padding(padding: EdgeInsets.only(left: 20)),
-                    Flexible(
-                      child: Text(S.of(context).agreement_policy_welcome),
-                    ),
-                    Padding(padding: EdgeInsets.only(left: 20)),
-                  ],
-                ),
-                Padding(padding: EdgeInsets.only(top: 20)),
-                Row(
-                  //mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Padding(padding: EdgeInsets.only(left: 20)),
-                    Flexible(
-                      child:
-                      Text.rich(
-                        TextSpan(children: [
-                          TextSpan(text: S.of(context).read_agreement_prefix),
-                          TextSpan(text: S.of(context).user_agreement,
-                              style: TextStyle(color: Colors.blue),
-                              recognizer: TapGestureRecognizer()..onTap = () {
-                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                  content: Text('用户协议，未完待续...'),
-                                ));
-                              }),
-                          TextSpan(text: S.of(context).and),
-                          TextSpan(text: S.of(context).private_policy, style: TextStyle(color: Colors.blue),
-                              recognizer: TapGestureRecognizer()..onTap = () {
-                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                  content: Text('隐私政策，未完待续...'),
-                                ));
-                              }),
-                          TextSpan(text: S.of(context).end_punctuation),
-                        ]
-                        ),
-                      ),
-                    ),
-                    Padding(padding: EdgeInsets.only(left: 20)),
-                  ],
-                ),
-                Padding(padding: EdgeInsets.only(top: 20)),
-                Row(
-                  children: [
-                    Padding(padding: EdgeInsets.only(left: 20)),
-                    Expanded(
-                        flex: 2,
-                        child: ElevatedButton(
-                          onPressed: (){
-                            SystemChannels.platform.invokeMethod('SystemNavigator.pop');
-                          },
-                          child: Text(S.of(context).reject),
-                          style: ButtonStyle(
-                            shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))),
-                            backgroundColor: MaterialStateProperty.all(Colors.yellow[700]),
-                          ),
-                        )
-                    ),
-                    Expanded(child: SizedBox(), flex: 1,),
-                    Expanded(
-                        flex: 2,
-                        child: ElevatedButton(
-                          onPressed: (){
-                            saveUserAgreeLicense();
-                            Navigator.pop(context);
-                          },
-                          child: Text(S.of(context).agree),
-                          style: ButtonStyle(
-                            shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))),
-                            backgroundColor: MaterialStateProperty.all(Colors.green[600]),
-                          ),
-                        )
-                    ),
-                    Padding(padding: EdgeInsets.only(left: 20)),
-                  ],
-                ),
-                Padding(padding: EdgeInsets.only(top: 20)),
-              ],
-            ),
-          );
-        });
-  }
-
   Future<void> saveUserAgreeLicense() async {
     final SharedPreferences pref = await prefs;
     pref.setBool(Constants.AGREE_LICENSE, true);
   }
 
-  Future<void> showLicenseDlg() async {
-    final SharedPreferences pref = await prefs;
-    bool? isAgree = pref.getBool(Constants.AGREE_LICENSE);
-    if (isAgree == null || !isAgree){
-      showMyDlg(context);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
-    Future.delayed(Duration(milliseconds: 500), (){
-      showLicenseDlg();
-    });
 
     return GestureDetector(
       onTap: () {
@@ -183,8 +74,22 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             children: <Widget>[
               Padding(padding: EdgeInsets.only(top: statusBarHeight)),
-              Padding(padding: EdgeInsets.only(top: 30)),
-              Image.asset('resources/images/logo.png'),
+              Padding(padding: EdgeInsets.only(top: 5)),
+              Row(
+                children: [
+                  IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: (){
+                    Navigator.pop(context);
+                  }),
+                  Expanded(child: Text(S.of(context).new_user_register, textAlign: TextAlign.center,)),
+                  Visibility(//保证标题居中，只是占位
+                      visible: false,
+                      maintainState:true,
+                      maintainAnimation: true,
+                      maintainSize:true,
+                      child: IconButton(icon: Icon(Icons.arrow_back_ios, color: Colors.white,), onPressed: () {  },)
+                  ),
+                ],
+              ),
               Padding(padding: EdgeInsets.only(top: 30)),
               Column(
                 children: <Widget>[
@@ -193,11 +98,10 @@ class _LoginPageState extends State<LoginPage> {
                       child: Column(
                           children: <Widget>[
                             TextFormField(
-                              autovalidateMode: AutovalidateMode.onUserInteraction,
-                              keyboardType: TextInputType.emailAddress,
                               cursorColor: Colors.green,
                               //autofocus: false,
                               controller: mailController,
+                              keyboardType: TextInputType.emailAddress,
                               onChanged: (value) {
                                 mailTextEditValueChange(value);
                               },
@@ -244,8 +148,9 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                               ),
                               validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return S.of(context).pls_input_password;
+                                RegExp reg = new RegExp(r'^(?!([a-zA-Z]+|\\d+)$)[a-zA-Z\\d]{6,20}$');
+                                if (!reg.hasMatch(value!)) {
+                                  return S.of(context).password_hint;
                                 }
                                 return null;
                               },
@@ -254,28 +159,7 @@ class _LoginPageState extends State<LoginPage> {
                           ]
                       )
                   ),
-                  Row(
-                      children: <Widget>[
-                        TextButton(
-                          child: Text(S.of(context).register),
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder:(context) {
-                              return RegisterPage();
-                            }));
-                          },
-                        ),
-                        Expanded(child: SizedBox()),
-                        TextButton(
-                          style: ButtonStyle(alignment: Alignment.centerRight),
-                          child: Text(S.of(context).forget_password),
-                          onPressed: () {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text('忘记密码功能，未完待续...'),
-                            ));
-                          },
-                        ),
-                      ]
-                  ),
+                  Padding(padding: EdgeInsets.only(top: 30)),
                   Row(
                       children: <Widget>[
                         SizedBox(width: 20,),
@@ -284,14 +168,14 @@ class _LoginPageState extends State<LoginPage> {
                                 onPressed: () {
                                   if (formKey.currentState!.validate()) {
                                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                      content: Text('登录功能，未完待续...'),
+                                      content: Text('获取邮箱验证码功能，未完待续...'),
                                     ));
                                   }
                                 },
                                 style: ButtonStyle(
                                   shape:MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))),
                                 ),
-                                child: Text(S.of(context).login)
+                                child: Text(S.of(context).get_email_verify_code)
                             )
                         ),
                         SizedBox(width: 20,),
@@ -299,6 +183,66 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ],
               ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Padding(padding: EdgeInsets.only(left: 20)),
+                      Expanded(
+                          child: Text("邮箱验证码已发送至")
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Padding(padding: EdgeInsets.only(left: 20)),
+                      Expanded(
+                          child: Text("test@134.com")
+                      )
+                    ],
+                  ),
+                  Padding(padding: EdgeInsets.only(top: 30)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(child: TextField(
+                        //textAlignVertical: TextAlignVertical.center,
+                        cursorWidth: 0,
+                        cursorHeight: 0,
+                        maxLength: 1,
+                        maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                        maxLines: 1,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.only(top: 0, bottom: 0),
+                          fillColor: Colors.grey[400],
+                          filled: true,
+                          counterText:"",//不显示长度提示字串，类似1/1
+                          enabledBorder: OutlineInputBorder( //未选中时候的颜色
+                            borderRadius: BorderRadius.circular(5.0),
+                            borderSide: BorderSide(color: Colors.grey,),
+                          ),
+                          focusedBorder: OutlineInputBorder( //选中时外边框颜色
+                            borderRadius: BorderRadius.circular(5.0),
+                            borderSide: BorderSide(color: Colors.green,),
+                          ),
+                        ),
+                      ), width: 40, height: 40,),
+                      Padding(padding: EdgeInsets.only(left: 20)),
+                      SizedBox(child: TextField(), width: 40, height: 40,),
+                      Padding(padding: EdgeInsets.only(left: 20)),
+                      SizedBox(child: TextField(), width: 40, height: 40,),
+                      Padding(padding: EdgeInsets.only(left: 20)),
+                      SizedBox(child: TextField(), width: 40, height: 40,),
+                      Padding(padding: EdgeInsets.only(left: 20)),
+                      SizedBox(child: TextField(), width: 40, height: 40,),
+                      Padding(padding: EdgeInsets.only(left: 20)),
+                      SizedBox(child: TextField(), width: 40, height: 40,),
+                    ],
+                  )
+                ],
+              )
             ],
           ),
         ),
