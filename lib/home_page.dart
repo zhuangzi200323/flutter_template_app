@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template_app/themeAndLocal/CurrentLocale.dart';
+import 'package:flutter_template_app/themeAndLocal/ThemeModel.dart';
 import 'package:flutter_template_app/generated/l10n.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
+  HomePage({Key? key, required this.currentLocale}) : super(key: key);
+
+  CurrentLocale currentLocale;
   @override
   _HomePageState createState() => _HomePageState();
 }
 
+Locale? preLocale;
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   TabController? controller;
@@ -15,6 +22,7 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
+    print('initState');
   }
 
   initTabData() {
@@ -37,10 +45,30 @@ class _HomePageState extends State<HomePage>
   }
 
   @override
-  Widget build(BuildContext context) {
-    if(tabList == null || tabList!.isEmpty) {
+  void didUpdateWidget(covariant HomePage oldWidget) {
+    print('didUpdateWidget');
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void didChangeDependencies() {
+    print('didChangeDependencies');
+    if(tabList == null || tabList!.isEmpty || preLocale != widget.currentLocale.value) {
+      preLocale = widget.currentLocale.value;
       initTabData();
+      print("initTabData");
     }
+    super.didChangeDependencies();
+  }
+
+  @override
+  void deactivate() {
+    print('deactivate');
+    super.deactivate();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     if(controller == null){
       controller = TabController(
         initialIndex: selectIndex,
@@ -74,14 +102,26 @@ class _HomePageState extends State<HomePage>
               child: TabBarView(
                 controller: controller,
                 children: tabList!.map((item) {
-                  return Center(
-                    child: Text(item.title),
+                  return Scrollbar(
+                    child: ListView(
+                      children: [
+                        Text(item.title, textAlign: TextAlign.center,),
+                        Column(
+                          children: [
+                            Text(S.of(context).get_email_verify_code),
+                            Text(S.of(context).new_user_register),
+                            Text(S.of(context).password_hint),
+                          ],
+                        ),
+                      ],
+                    ),
                   );
                 }).toList(),
               ),
             )
           ],
-        ));
+        )
+    );
   }
 }
 
