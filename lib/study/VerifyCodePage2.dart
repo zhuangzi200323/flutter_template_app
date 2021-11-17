@@ -1,8 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_template_app/RoundRectVerifyCode.dart';
-import 'package:flutter_template_app/UnderlineVerifyCode.dart';
+import 'package:flutter_template_app/study/RoundRectVerifyCode.dart';
+import 'package:flutter_template_app/study/UnderlineVerifyCode.dart';
 import 'package:flutter_template_app/generated/l10n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

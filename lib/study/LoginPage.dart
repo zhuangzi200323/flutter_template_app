@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_template_app/utils/Constants.dart';
-import 'package:flutter_template_app/RegisterPage.dart';
+import 'package:flutter_template_app/study/RegisterPage.dart';
 import 'package:flutter_template_app/generated/l10n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

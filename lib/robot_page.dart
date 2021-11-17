@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template_app/LoginPage.dart';
-import 'package:flutter_template_app/RegisterPage.dart';
-import 'package:flutter_template_app/VerifyCodePage1.dart';
-import 'package:flutter_template_app/VerifyCodePage2.dart';
+import 'package:flutter_template_app/study/LoginPage.dart';
+import 'package:flutter_template_app/study/RegisterPage.dart';
+import 'package:flutter_template_app/study/VerifyCodePage1.dart';
+import 'package:flutter_template_app/study/VerifyCodePage2.dart';
 import 'package:flutter_template_app/generated/l10n.dart';
 
 class RobotPage extends StatelessWidget {
