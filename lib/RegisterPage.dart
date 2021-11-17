@@ -183,66 +183,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ],
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Padding(padding: EdgeInsets.only(left: 20)),
-                      Expanded(
-                          child: Text("邮箱验证码已发送至")
-                      )
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Padding(padding: EdgeInsets.only(left: 20)),
-                      Expanded(
-                          child: Text("test@134.com")
-                      )
-                    ],
-                  ),
-                  Padding(padding: EdgeInsets.only(top: 30)),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(child: TextField(
-                        //textAlignVertical: TextAlignVertical.center,
-                        cursorWidth: 0,
-                        cursorHeight: 0,
-                        maxLength: 1,
-                        maxLengthEnforcement: MaxLengthEnforcement.enforced,
-                        maxLines: 1,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.only(top: 0, bottom: 0),
-                          fillColor: Colors.grey[400],
-                          filled: true,
-                          counterText:"",//不显示长度提示字串，类似1/1
-                          enabledBorder: OutlineInputBorder( //未选中时候的颜色
-                            borderRadius: BorderRadius.circular(5.0),
-                            borderSide: BorderSide(color: Colors.grey,),
-                          ),
-                          focusedBorder: OutlineInputBorder( //选中时外边框颜色
-                            borderRadius: BorderRadius.circular(5.0),
-                            borderSide: BorderSide(color: Colors.green,),
-                          ),
-                        ),
-                      ), width: 40, height: 40,),
-                      Padding(padding: EdgeInsets.only(left: 20)),
-                      SizedBox(child: TextField(), width: 40, height: 40,),
-                      Padding(padding: EdgeInsets.only(left: 20)),
-                      SizedBox(child: TextField(), width: 40, height: 40,),
-                      Padding(padding: EdgeInsets.only(left: 20)),
-                      SizedBox(child: TextField(), width: 40, height: 40,),
-                      Padding(padding: EdgeInsets.only(left: 20)),
-                      SizedBox(child: TextField(), width: 40, height: 40,),
-                      Padding(padding: EdgeInsets.only(left: 20)),
-                      SizedBox(child: TextField(), width: 40, height: 40,),
-                    ],
-                  )
-                ],
-              )
             ],
           ),
         ),
