@@ -65,6 +65,12 @@ class RobotPage extends StatelessWidget {
                   Navigator.pushNamed(context, "PullRefreshPage");
                 },
               ),
+              ElevatedButton(
+                child: Text("ScanPage"),
+                onPressed: () {
+                  Navigator.pushNamed(context, "ScanPage");
+                },
+              ),
             ]
         ),
       ),

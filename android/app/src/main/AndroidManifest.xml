@@ -2,6 +2,7 @@
     package="com.jack.flutter_template_app">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
    <application
         android:label="flutter_template_app"
