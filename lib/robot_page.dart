@@ -6,7 +6,7 @@ import 'package:flutter_template_app/study/VerifyCodePage1.dart';
 import 'package:flutter_template_app/study/VerifyCodePage2.dart';
 import 'package:flutter_template_app/generated/l10n.dart';
 import 'package:flutter_template_app/study/VideoPage.dart';
-import 'package:flutter_template_app/study/WebViewExampleState.dart';
+import 'package:flutter_template_app/study/WebViewExample.dart';
 
 class RobotPage extends StatelessWidget {
   @override
