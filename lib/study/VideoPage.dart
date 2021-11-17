@@ -12,7 +12,7 @@ class VideoPage extends StatefulWidget {
 }
 
 class _VideoPageState extends State<VideoPage> {
-  late Timer _timer;
+  Timer? _timer;
   late VideoPlayerController _controller;
   double progress = 0;
 
@@ -50,7 +50,7 @@ class _VideoPageState extends State<VideoPage> {
   }
 
   void stopTimer(){
-    _timer.cancel();
+    _timer!.cancel();
   }
 
   // addListener后特别卡，原因不明，使用timer替代
@@ -64,7 +64,9 @@ class _VideoPageState extends State<VideoPage> {
 
   @override
   void dispose() {
-    _timer.cancel();
+    if(_timer != null) {
+      _timer!.cancel();
+    }
     //_controller.removeListener(videoListener);
     _controller.dispose();
     super.dispose();
@@ -169,9 +171,7 @@ class _VideoPageState extends State<VideoPage> {
               ),
             ),
             ElevatedButton(onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder:(context) {
-                return VideoFullPage(arguments: {"controller": _controller},);
-              }));
+              Navigator.pushNamed(context, "VideoFullPage", arguments:{"controller": _controller});
             }, child: Text("全屏")),
           ]
       ),
