@@ -4,6 +4,7 @@ import 'package:flutter_template_app/study/RegisterPage.dart';
 import 'package:flutter_template_app/study/VerifyCodePage1.dart';
 import 'package:flutter_template_app/study/VerifyCodePage2.dart';
 import 'package:flutter_template_app/generated/l10n.dart';
+import 'package:flutter_template_app/study/WebViewExampleState.dart';
 
 class RobotPage extends StatelessWidget {
   @override
@@ -46,14 +47,14 @@ class RobotPage extends StatelessWidget {
                   }));
                 },
               ),
-              // ElevatedButton(
-              //   child: Text("CodeInputTextField"),
-              //   onPressed: () {
-              //     Navigator.push(context, MaterialPageRoute(builder:(context) {
-              //       return CodeInputTextField();
-              //     }));
-              //   },
-              // ),
+              ElevatedButton(
+                child: Text("WebViewExample"),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder:(context) {
+                    return WebViewExample();
+                  }));
+                },
+              ),
             ]
         ),
       ),
