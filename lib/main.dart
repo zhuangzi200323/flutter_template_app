@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_template_app/routes/Routes.dart';
 import 'package:flutter_template_app/themeAndLocal/CurrentLocale.dart';
 import 'package:flutter_template_app/themeAndLocal/Theme.dart';
 import 'package:flutter_template_app/themeAndLocal/ThemeModel.dart';
@@ -57,6 +58,7 @@ class MyApp extends StatelessWidget {
             locale: currentLocale.value,
             theme: AppTheme.getThemeData(themeModel.value),
             home: MainPage(currentLocale: currentLocale),
+            onGenerateRoute: onGenerateRoute,
           );
         });
   }

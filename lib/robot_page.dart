@@ -20,57 +20,43 @@ class RobotPage extends StatelessWidget {
               ElevatedButton(
                 child: Text("LoginPage"),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder:(context) {
-                    return LoginPage();
-                  }));
+                  Navigator.pushNamed(context, "LoginPage");
                 },
               ),
               ElevatedButton(
                 child: Text("RegisterPage"),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder:(context) {
-                    return RegisterPage();
-                  }));
+                  Navigator.pushNamed(context, "RegisterPage");
                 },
               ),
               ElevatedButton(
                 child: Text("VerifyCodePage1"),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder:(context) {
-                    return VerifyCodePage1();
-                  }));
+                  Navigator.pushNamed(context, "VerifyCodePage1");
                 },
               ),
               ElevatedButton(
                 child: Text("VerifyCodePage2"),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder:(context) {
-                    return VerifyCodePage2();
-                  }));
+                  Navigator.pushNamed(context, "VerifyCodePage2");
                 },
               ),
               ElevatedButton(
                 child: Text("WebViewExample"),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder:(context) {
-                    return WebViewExample();
-                  }));
+                  Navigator.pushNamed(context, "WebViewExample");
                 },
               ),
               ElevatedButton(
                 child: Text("CameraExampleHome"),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder:(context) {
-                    return CameraExampleHome();
-                  }));
+                  Navigator.pushNamed(context, "CameraExampleHome");
                 },
               ),
               ElevatedButton(
                 child: Text("VideoPage"),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder:(context) {
-                    return VideoPage();
-                  }));
+                  Navigator.pushNamed(context, "VideoPage");
                 },
               ),
             ]
