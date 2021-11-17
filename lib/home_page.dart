@@ -1,8 +1,14 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_template_app/themeAndLocal/CurrentLocale.dart';
 import 'package:flutter_template_app/themeAndLocal/ThemeModel.dart';
 import 'package:flutter_template_app/generated/l10n.dart';
 import 'package:provider/provider.dart';
+
+import 'generated/json/base/json_convert_content.dart';
+import 'json/Author.dart';
+import 'json/author2_entity.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key, required this.currentLocale}) : super(key: key);
@@ -69,6 +75,10 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
+    Map<String, dynamic> jsonMap = json.decode('{\"name\": \"jack\",\"title\": \"test\",\"id\": 2}');
+    Author2Entity author2entity = JsonConvert.fromJsonAsT<Author2Entity>(jsonMap);
+    Author author = Author.fromJson(jsonMap);
+
     if(controller == null){
       controller = TabController(
         initialIndex: selectIndex,
@@ -111,6 +121,8 @@ class _HomePageState extends State<HomePage>
                             Text(S.of(context).get_email_verify_code),
                             Text(S.of(context).new_user_register),
                             Text(S.of(context).password_hint),
+                            Text(author2entity.name == null ? "json parse error" : author2entity.name!),
+                            Text(author.title == null ? "json parse error" : author.title!),
                           ],
                         ),
                       ],
