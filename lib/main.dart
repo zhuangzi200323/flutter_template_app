@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_template_app/themeAndLocal/CurrentLocale.dart';
@@ -8,9 +9,20 @@ import 'package:flutter_template_app/generated/l10n.dart';
 import 'package:flutter_template_app/home_page.dart';
 import 'package:flutter_template_app/mine_page.dart';
 import 'package:flutter_template_app/robot_page.dart';
+import 'package:flutter_template_app/utils/LogUtils.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+List<CameraDescription>? cameras;
+
+void main() async {
+  // Fetch the available cameras before initializing the app.
+  try {
+    WidgetsFlutterBinding.ensureInitialized();
+    cameras = await availableCameras();
+    print(cameras == null ? "0" : cameras!.length);
+  } on CameraException catch (e) {
+    LogUtils.logError(e.code, e.description == null ? "" : e.description!);
+  }
   runApp(MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context)=>ThemeModel()), //主题

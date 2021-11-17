@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template_app/study/CameraExampleHome.dart';
 import 'package:flutter_template_app/study/LoginPage.dart';
 import 'package:flutter_template_app/study/RegisterPage.dart';
 import 'package:flutter_template_app/study/VerifyCodePage1.dart';
@@ -52,6 +53,14 @@ class RobotPage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder:(context) {
                     return WebViewExample();
+                  }));
+                },
+              ),
+              ElevatedButton(
+                child: Text("CameraExampleHome"),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder:(context) {
+                    return CameraExampleHome();
                   }));
                 },
               ),
