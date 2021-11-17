@@ -93,87 +93,98 @@ class _VideoPageState extends State<VideoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Video"),),
-      body: Column(
-          children: [
-            Container(
-              padding: EdgeInsets.all(10),
-              //width: MediaQuery.of(context).size.width,
-              height: 300,
-              // decoration: BoxDecoration(
-              //   image: DecorationImage(
-              //     fit: BoxFit.fill,
-              //     image: AssetImage("images/machine_bg.png"),
-              //   ),
-              // ),
-              alignment: Alignment.bottomCenter,
-              child: Hero(
-                  tag: "player",
-                  child: AspectRatio(
-                      aspectRatio: 1280/720,
-                      child: Stack(
-                        children: [
-                          GestureDetector(
-                            child: VideoPlayer(_controller),
-                            onTap: ()=>_controller.value.isPlaying ? stopVideo() : playVideo(),
-                          ),
-                          Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Container(
-                              alignment: Alignment.bottomCenter,
-                              padding: EdgeInsets.only(left: 0, right: 0, bottom: 0),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
+      body: RefreshIndicator(
+        onRefresh: () async  {
+          print("onRefresh");
+          await Future.delayed(Duration(seconds: 1));
+          return Future.value(true);
+        },
+        child: ListView(
+            children: [
+              Column(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      //width: MediaQuery.of(context).size.width,
+                      height: 300,
+                      // decoration: BoxDecoration(
+                      //   image: DecorationImage(
+                      //     fit: BoxFit.fill,
+                      //     image: AssetImage("images/machine_bg.png"),
+                      //   ),
+                      // ),
+                      alignment: Alignment.bottomCenter,
+                      child: Hero(
+                          tag: "player",
+                          child: AspectRatio(
+                              aspectRatio: 1280/720,
+                              child: Stack(
                                 children: [
-                                  Slider(
-                                    min: 0,
-                                    max: _controller.value.duration.inMilliseconds.toDouble(),
-                                    value: progress,
-                                    onChanged: (value){
-                                      setState(() {
-                                        _controller.seekTo(Duration(milliseconds: (value).toInt()));
-                                        progress = value;
-                                      });
-                                    },
+                                  GestureDetector(
+                                    child: VideoPlayer(_controller),
+                                    onTap: ()=>_controller.value.isPlaying ? stopVideo() : playVideo(),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.bottomCenter,
+                                    child: Container(
+                                      alignment: Alignment.bottomCenter,
+                                      padding: EdgeInsets.only(left: 0, right: 0, bottom: 0),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        children: [
+                                          Slider(
+                                            min: 0,
+                                            max: _controller.value.duration.inMilliseconds.toDouble(),
+                                            value: progress,
+                                            onChanged: (value){
+                                              setState(() {
+                                                _controller.seekTo(Duration(milliseconds: (value).toInt()));
+                                                progress = value;
+                                              });
+                                            },
+                                          ),
+                                        ],
+                                      ),
+                                      // child: SeekBar(
+                                      //   backgroundColor: Color.fromRGBO(0, 0, 0, 0.4),
+                                      //   progressColor: Color.fromRGBO(0, 0, 0, 0.7),
+                                      //   indicatorColor: Colors.grey[350],
+                                      //   value: progress,
+                                      //   onValueChanged: (value){
+                                      //     print("####### ${value}");
+                                      //     _controller.seekTo(Duration(milliseconds: (value.progress*_controller.value.duration.inMilliseconds).toInt()));
+                                      //     progress = value.value;
+                                      //   },
+                                      // ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.center,
+                                    child: _controller.value.isPlaying ? Container() : GestureDetector(
+                                      child: Container(
+                                        width: 40,
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(20),
+                                          color: Color.fromRGBO(0, 0, 0, 0.5),
+                                        ),
+                                        child: Icon(Icons.play_arrow, color: Colors.white,),
+                                      ),
+                                      onTap: ()=> playVideo(),
+                                    ),
                                   ),
                                 ],
-                              ),
-                              // child: SeekBar(
-                              //   backgroundColor: Color.fromRGBO(0, 0, 0, 0.4),
-                              //   progressColor: Color.fromRGBO(0, 0, 0, 0.7),
-                              //   indicatorColor: Colors.grey[350],
-                              //   value: progress,
-                              //   onValueChanged: (value){
-                              //     print("####### ${value}");
-                              //     _controller.seekTo(Duration(milliseconds: (value.progress*_controller.value.duration.inMilliseconds).toInt()));
-                              //     progress = value.value;
-                              //   },
-                              // ),
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.center,
-                            child: _controller.value.isPlaying ? Container() : GestureDetector(
-                              child: Container(
-                                width: 40,
-                                height: 40,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Color.fromRGBO(0, 0, 0, 0.5),
-                                ),
-                                child: Icon(Icons.play_arrow, color: Colors.white,),
-                              ),
-                              onTap: ()=> playVideo(),
-                            ),
-                          ),
-                        ],
-                      )
-                  )
-              ),
-            ),
-            ElevatedButton(onPressed: (){
-              Navigator.pushNamed(context, "VideoFullPage", arguments:{"controller": _controller});
-            }, child: Text("全屏")),
-          ]
+                              )
+                          )
+                      ),
+                    ),
+                    ElevatedButton(onPressed: (){
+                      Navigator.pushNamed(context, "VideoFullPage", arguments:{"controller": _controller});
+                    }, child: Text("全屏")),
+                  ]
+              )
+            ],
+        ),
       ),
     );
   }
