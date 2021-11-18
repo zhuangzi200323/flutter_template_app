@@ -77,6 +77,12 @@ class RobotPage extends StatelessWidget {
                   Navigator.pushNamed(context, "CustomizePage");
                 },
               ),
+              ElevatedButton(
+                child: Text("SlamMapInfo page"),
+                onPressed: () {
+                  Navigator.pushNamed(context, "SlamMapInfoPage");
+                },
+              ),
             ]
         ),
       ),
