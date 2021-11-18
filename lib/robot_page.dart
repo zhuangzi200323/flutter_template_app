@@ -71,6 +71,12 @@ class RobotPage extends StatelessWidget {
                   Navigator.pushNamed(context, "ScanPage");
                 },
               ),
+              ElevatedButton(
+                child: Text("Customize page"),
+                onPressed: () {
+                  Navigator.pushNamed(context, "CustomizePage");
+                },
+              ),
             ]
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template_app/study/CameraExampleHome.dart';
+import 'package:flutter_template_app/study/CustomizePage.dart';
 import 'package:flutter_template_app/study/LoginPage.dart';
 import 'package:flutter_template_app/study/PullRefreshPage.dart';
 import 'package:flutter_template_app/study/RegisterPage.dart';
@@ -22,6 +23,7 @@ final routes = {
   "VideoFullPage":(context, {arguments})=>VideoFullPage(arguments: arguments),
   "PullRefreshPage":(context, {arguments})=>PullRefreshPage(),
   "ScanPage":(context, {arguments})=>ScanPage(),
+  "CustomizePage":(context, {arguments})=>CustomizePage(),
 };
 
 //路由跳转，可转参数
