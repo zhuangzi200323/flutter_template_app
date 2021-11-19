@@ -118,13 +118,14 @@ class _MainPageState extends State<MainPage> {
       bottomNavigationBar: BottomNavigationBar(
         // 底部导航
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: selectedIndex==0 ?
-          Image.asset('resources/images/home_p.png',
-            gaplessPlayback: true,//重新加载图片的过程中，原图片的展示是否保留，解决闪一下的问题
-          ) :
-          Image.asset('resources/images/home_n.png',
-            gaplessPlayback: true,
-          ), label: S.of(context).home),
+          BottomNavigationBarItem(
+              icon: Image.asset('resources/images/home_n.png',
+                gaplessPlayback: true,//重新加载图片的过程中，原图片的展示是否保留，解决闪一下的问题
+              ),
+              activeIcon: Image.asset('resources/images/home_p.png',
+                gaplessPlayback: true,
+              ),
+              label: S.of(context).home),
           BottomNavigationBarItem(
               icon: Icon(Icons.business), label: S.of(context).robot),
           BottomNavigationBarItem(
