@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -141,7 +142,29 @@ class _MainPageState extends State<MainPage> {
       ),
       drawer: MyDrawer(), //抽屉
       backgroundColor: Theme.of(context).primaryColor,
-      body: SafeArea(child: body),
+      body: PageTransitionSwitcher(
+        duration: const Duration(milliseconds: 1000),
+        reverse: false,
+        transitionBuilder: (
+            Widget child,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+            ) {
+          return
+            FadeThroughTransition(
+              animation: animation,
+              secondaryAnimation: secondaryAnimation,
+              child: child,
+            );
+            // SharedAxisTransition(
+            //   child: child,
+            //   animation: animation,
+            //   transitionType: SharedAxisTransitionType.vertical,
+            //   secondaryAnimation: secondaryAnimation,
+            // );
+        },
+        child: body,//SafeArea(child: body),
+      ),
     );
   }
 }

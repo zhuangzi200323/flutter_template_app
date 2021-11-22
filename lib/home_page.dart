@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_template_app/animation/AnimationPage.dart';
 import 'package:flutter_template_app/themeAndLocal/CurrentLocale.dart';
 import 'package:flutter_template_app/themeAndLocal/ThemeModel.dart';
 import 'package:flutter_template_app/generated/l10n.dart';
@@ -33,14 +34,14 @@ class _HomePageState extends State<HomePage>
 
   initTabData() {
     tabList = [
-      new TabTitle(S.of(context).recommend, 0),
-      new TabTitle(S.of(context).social, 1),
-      new TabTitle(S.of(context).entertainment, 2),
-      new TabTitle(S.of(context).sport, 3),
-      new TabTitle(S.of(context).article, 4),
-      new TabTitle(S.of(context).tech, 5),
-      new TabTitle(S.of(context).finance, 6),
-      new TabTitle(S.of(context).fishion, 7),
+      TabTitle(S.of(context).recommend, 0, const AnimationPage()),
+      TabTitle(S.of(context).social, 1, const AnimationPage()),
+      TabTitle(S.of(context).entertainment, 2, const AnimationPage()),
+      TabTitle(S.of(context).sport, 3, const AnimationPage()),
+      TabTitle(S.of(context).article, 4, const AnimationPage()),
+      TabTitle(S.of(context).tech, 5, const AnimationPage()),
+      TabTitle(S.of(context).finance, 6, const AnimationPage()),
+      TabTitle(S.of(context).fishion, 7, const AnimationPage()),
     ];
   }
 
@@ -112,22 +113,23 @@ class _HomePageState extends State<HomePage>
               child: TabBarView(
                 controller: controller,
                 children: tabList!.map((item) {
-                  return Scrollbar(
-                    child: ListView(
-                      children: [
-                        Text(item.title, textAlign: TextAlign.center,),
-                        Column(
-                          children: [
-                            Text(S.of(context).get_email_verify_code),
-                            Text(S.of(context).new_user_register),
-                            Text(S.of(context).password_hint),
-                            Text(author2entity.name == null ? "json parse error" : author2entity.name!),
-                            Text(author.title == null ? "json parse error" : author.title!),
-                          ],
-                        ),
-                      ],
-                    ),
-                  );
+                  return item.widget;
+                  // return Scrollbar(
+                  //   child: ListView(
+                  //     children: [
+                  //       Text(item.title, textAlign: TextAlign.center,),
+                  //       Column(
+                  //         children: [
+                  //           Text(S.of(context).get_email_verify_code),
+                  //           Text(S.of(context).new_user_register),
+                  //           Text(S.of(context).password_hint),
+                  //           Text(author2entity.name == null ? "json parse error" : author2entity.name!),
+                  //           Text(author.title == null ? "json parse error" : author.title!),
+                  //         ],
+                  //       ),
+                  //     ],
+                  //   ),
+                  // );
                 }).toList(),
               ),
             )
@@ -140,6 +142,7 @@ class _HomePageState extends State<HomePage>
 class TabTitle {
   String title;
   int id;
+  Widget widget;
 
-  TabTitle(this.title, this.id);
+  TabTitle(this.title, this.id, this.widget);
 }
