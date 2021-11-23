@@ -8,6 +8,8 @@ import 'package:flutter_template_app/generated/l10n.dart';
 import 'package:flutter_template_app/study/VideoPage.dart';
 import 'package:flutter_template_app/study/WebViewExample.dart';
 
+import 'PathProviderDemo.dart';
+
 class RobotPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -81,6 +83,14 @@ class RobotPage extends StatelessWidget {
                 child: Text("SlamMapInfo page"),
                 onPressed: () {
                   Navigator.pushNamed(context, "SlamMapInfoPage");
+                },
+              ),
+              ElevatedButton(
+                child: Text("PathProviderDemo page"),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder:(context) {
+                    return PathProviderDemo();
+                  }));
                 },
               ),
             ]
