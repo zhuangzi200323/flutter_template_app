@@ -22,7 +22,7 @@ class _CustomizePageState extends State<CustomizePage> {
 
   @override
   void initState() {
-    loadImage("resources/images/test.jpg", false)
+    loadImage("resources/images/testw.jpg", false)
         .then((value)  {
       image1 = value;
       setState(() {});
