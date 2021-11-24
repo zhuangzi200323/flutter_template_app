@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template_app/study/CustomizePage2.dart';
 import 'package:flutter_template_app/study/photo_view_demo/home_screen.dart';
 
 import 'PathProviderDemo.dart';
@@ -70,6 +71,14 @@ class RobotPage extends StatelessWidget {
                 child: Text("Customize page"),
                 onPressed: () {
                   Navigator.pushNamed(context, "CustomizePage");
+                },
+              ),
+              ElevatedButton(
+                child: Text("Customize page 2"),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder:(context) {
+                    return CustomizePage2();
+                  }));
                 },
               ),
               ElevatedButton(
