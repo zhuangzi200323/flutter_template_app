@@ -46,6 +46,8 @@ dependencies:
   fluttertoast: ^8.0.8
   animations: ^2.0.2
   path_provider: ^2.0.7
+  photo_view: ^0.13.0
+  flutter_svg: ^0.23.0+1
 
 dev_dependencies:
   flutter_test:
@@ -87,6 +89,7 @@ flutter:
     - resources/images/3.0x/
     - resources/images/4.0x/
     - resources/mp4/
+    - resources/photoview/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -99,6 +102,12 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+  fonts:
+    - family: PTSans
+      fonts:
+        - asset: resources/photoview/fonts/ptasans-regular.ttf
+        - asset: resources/photoview/fonts/ptasans-bold.ttf
+          weight: 700
   # fonts:
   #   - family: Schyler
   #     fonts:
