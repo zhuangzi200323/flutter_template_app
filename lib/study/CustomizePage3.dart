@@ -59,6 +59,8 @@ class _CustomizePageState extends State<CustomizePage3> {
 
   onScaleUpdate(ScaleUpdateDetails details) {
     // print("@@@@@@@@@@@@@@@ => scale=${scale}, rotation=${rotation}, ${details.focalPoint}, left => ${left}, top => ${top}, size=${MediaQuery.of(context).size}");
+    var deltaLeft = 0.0; //deltaLeft > 0是向右滑动；deltaLeft < 0是向左滑动
+    var deltaTop = 0.0; //deltaTop > 0是向下滑动；deltaTop < 0是向上滑动
     if (details.pointerCount > 1) {
       scale += details.scale - downScale;
       downScale = details.scale;
@@ -66,8 +68,10 @@ class _CustomizePageState extends State<CustomizePage3> {
       rotation += details.rotation - downRotation;
       downRotation = details.rotation;
     } else {
-      left += details.focalPoint.dx - downPosition.dx;
-      top += details.focalPoint.dy - downPosition.dy;
+      deltaLeft = details.focalPoint.dx - downPosition.dx;
+      left += deltaLeft;
+      deltaTop = details.focalPoint.dy - downPosition.dy;
+      top += deltaTop;
       downPosition = details.focalPoint;
     }
 
@@ -83,6 +87,14 @@ class _CustomizePageState extends State<CustomizePage3> {
             offset.dy + image1!.height * scale * cos(rotation) + image1!.width * scale * sin(rotation));
         pointLeftBottom = Offset(offset.dx - image1!.height * scale * sin(rotation),
             offset.dy + image1!.height * scale * cos(rotation) + image1!.width * scale * sin(rotation));
+        if ((offset.dx - image1!.height * scale * sin(rotation) >= 0 && deltaLeft > 0) || //图像左边缘已经在屏幕内，无法向右再滑动
+            (image1!.width * scale * cos(rotation) + offset.dx <= MediaQuery.of(context).size.width && deltaLeft < 0)) {//图像右边缘已经在屏幕内，无法向左再滑动
+          left -= deltaLeft;
+        }
+        if ((offset.dy >= 0 && deltaTop > 0) ||//图像上边缘已经在屏幕内，无法向下再滑动
+            (offset.dy + image1!.height * scale * cos(rotation) + image1!.width * scale * sin(rotation) <= MediaQuery.of(context).size.height && deltaTop < 0)) {//图像下边缘已经在屏幕内，无法向上再滑动
+          top -= deltaTop;
+        }
       } else {
         pointLeftTop = Offset(offset.dx, offset.dy - image1!.width * scale * sin(rotation.abs()));
         pointRightTop = Offset(image1!.width * scale * cos(rotation.abs()) + image1!.height * scale * sin(rotation.abs()) + offset.dx,
@@ -90,6 +102,14 @@ class _CustomizePageState extends State<CustomizePage3> {
         pointRightBottom = Offset(image1!.width * scale * cos(rotation.abs()) + image1!.height * scale * sin(rotation.abs()) + offset.dx,
             offset.dy + image1!.height * scale * cos(rotation.abs()));
         pointLeftBottom = Offset(offset.dx, offset.dy + image1!.height * scale * cos(rotation.abs()));
+        if ((offset.dx >= 0 && deltaLeft > 0) ||
+            (image1!.width * scale * cos(rotation.abs()) + image1!.height * scale * sin(rotation.abs()) + offset.dx <= MediaQuery.of(context).size.width && deltaLeft < 0)) {
+          left -= deltaLeft;
+        }
+        if ((offset.dy - image1!.width * scale * sin(rotation.abs()) >= 0 && deltaTop > 0) ||
+            (offset.dy + image1!.height * scale * cos(rotation.abs()) <= MediaQuery.of(context).size.height && deltaTop < 0)) {
+          top -= deltaTop;
+        }
       }
       _pointLeftTop = renderBox.globalToLocal(pointLeftTop);
       _pointRightTop = renderBox.globalToLocal(pointRightTop);
