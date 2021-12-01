@@ -22,7 +22,6 @@ class _CustomizePageState extends State<CustomizePage3> {
   Offset downPosition = Offset.zero;
   double downScale = 0, downRotation = 0;
   Offset fingerPoint = Offset.zero;
-  Offset _pointLeftTop = Offset.zero, _pointRightTop = Offset.zero, _pointRightBottom = Offset.zero, _pointLeftBottom = Offset.zero;
 
   GlobalKey anchorKey = GlobalKey();
 
@@ -78,15 +77,7 @@ class _CustomizePageState extends State<CustomizePage3> {
     if (anchorKey.currentContext != null) {
       RenderBox renderBox = anchorKey.currentContext!.findRenderObject()! as RenderBox;
       var offset = renderBox.localToGlobal(Offset.zero);
-      Offset pointLeftTop, pointRightTop, pointRightBottom, pointLeftBottom;
-
       if(rotation >= 0) {
-        pointLeftTop = Offset(offset.dx - image1!.height * scale * sin(rotation), offset.dy);
-        pointRightTop = Offset(image1!.width * scale * cos(rotation) + offset.dx, offset.dy);
-        pointRightBottom = Offset(image1!.width * scale * cos(rotation) + offset.dx,
-            offset.dy + image1!.height * scale * cos(rotation) + image1!.width * scale * sin(rotation));
-        pointLeftBottom = Offset(offset.dx - image1!.height * scale * sin(rotation),
-            offset.dy + image1!.height * scale * cos(rotation) + image1!.width * scale * sin(rotation));
         if ((offset.dx - image1!.height * scale * sin(rotation) >= 0 && deltaLeft > 0) || //图像左边缘已经在屏幕内，无法向右再滑动
             (image1!.width * scale * cos(rotation) + offset.dx <= MediaQuery.of(context).size.width && deltaLeft < 0)) {//图像右边缘已经在屏幕内，无法向左再滑动
           left -= deltaLeft;
@@ -96,12 +87,6 @@ class _CustomizePageState extends State<CustomizePage3> {
           top -= deltaTop;
         }
       } else {
-        pointLeftTop = Offset(offset.dx, offset.dy - image1!.width * scale * sin(rotation.abs()));
-        pointRightTop = Offset(image1!.width * scale * cos(rotation.abs()) + image1!.height * scale * sin(rotation.abs()) + offset.dx,
-            offset.dy - image1!.width * scale * sin(rotation.abs()));
-        pointRightBottom = Offset(image1!.width * scale * cos(rotation.abs()) + image1!.height * scale * sin(rotation.abs()) + offset.dx,
-            offset.dy + image1!.height * scale * cos(rotation.abs()));
-        pointLeftBottom = Offset(offset.dx, offset.dy + image1!.height * scale * cos(rotation.abs()));
         if ((offset.dx >= 0 && deltaLeft > 0) ||
             (image1!.width * scale * cos(rotation.abs()) + image1!.height * scale * sin(rotation.abs()) + offset.dx <= MediaQuery.of(context).size.width && deltaLeft < 0)) {
           left -= deltaLeft;
@@ -111,10 +96,6 @@ class _CustomizePageState extends State<CustomizePage3> {
           top -= deltaTop;
         }
       }
-      _pointLeftTop = renderBox.globalToLocal(pointLeftTop);
-      _pointRightTop = renderBox.globalToLocal(pointRightTop);
-      _pointRightBottom = renderBox.globalToLocal(pointRightBottom);
-      _pointLeftBottom = renderBox.globalToLocal(pointLeftBottom);
       fingerPoint = renderBox.globalToLocal(details.focalPoint);
     }
 
@@ -158,8 +139,7 @@ class _CustomizePageState extends State<CustomizePage3> {
               child: CustomSingleChildLayout(
                 delegate: _CenterWithOriginalSizeDelegate(Size(image1!.width.toDouble(), image1!.height.toDouble()), Alignment.center),
                 child: CustomPaint(
-                  painter: TestImageView3(image1!, clickPoint: fingerPoint, pointLeftTop: _pointLeftTop,
-                      pointRightTop: _pointRightTop, pointRightBottom: _pointRightBottom, pointLeftBottom: _pointLeftBottom),
+                  painter: TestImageView3(image1!, clickPoint: fingerPoint, rotation: rotation),
                   size: Size(MediaQuery.of(context).size.width, MediaQuery.of(context).size.height),
                   key: anchorKey,
                 ),

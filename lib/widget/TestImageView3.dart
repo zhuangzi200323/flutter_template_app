@@ -11,15 +11,12 @@ class TestImageView3 extends CustomPainter {
   ui.PictureRecorder recorder = ui.PictureRecorder();
   Canvas? myCanvas;
   Offset _pointLeftTop = Offset.zero, _pointRightTop = Offset.zero, _pointRightBottom = Offset.zero, _pointLeftBottom = Offset.zero;
+  double _rotation = 0.0;
   
-  TestImageView3(ui.Image image, {Offset clickPoint = Offset.zero, Offset pointLeftTop = Offset.zero, Offset pointRightTop = Offset.zero,
-      Offset pointRightBottom = Offset.zero, Offset pointLeftBottom = Offset.zero}) {
+  TestImageView3(ui.Image image, {Offset clickPoint = Offset.zero, rotation = 0.0}) {
     _image = image;
     _clickPoint = clickPoint;
-    _pointLeftTop = pointLeftTop;
-    _pointRightTop = pointRightTop;
-    _pointRightBottom = pointRightBottom;
-    _pointLeftBottom = pointLeftBottom;
+    _rotation = rotation;
   }
 
   @override
@@ -36,6 +33,17 @@ class TestImageView3 extends CustomPainter {
 
       canvas.drawCircle(_clickPoint, 5, Paint());
 
+      if(_rotation >= 0) {
+        _pointLeftTop = Offset(-_image!.height * sin(_rotation) * cos(_rotation), _image!.height * sin(_rotation) * sin(_rotation));
+        _pointRightTop = Offset(_image!.width * cos(_rotation) * cos(_rotation), -_image!.width * cos(_rotation) * sin(_rotation));
+        _pointRightBottom = Offset(_image!.width + _image!.height * cos(_rotation) * sin(_rotation), _image!.height * cos(_rotation) * cos(_rotation));
+        _pointLeftBottom = Offset(_image!.width * sin(_rotation) * sin(_rotation), _image!.height + _image!.width * sin(_rotation) * cos(_rotation));
+      } else {
+        _pointLeftTop = Offset(_image!.width * sin(_rotation.abs()) * sin(_rotation.abs()), -_image!.width * sin(_rotation.abs()) * cos(_rotation.abs()));
+        _pointRightTop = Offset(_image!.width + _image!.height * sin(_rotation.abs()) * cos(_rotation.abs()), _image!.height * sin(_rotation.abs()) * sin(_rotation.abs()));
+        _pointRightBottom = Offset(_image!.width * cos(_rotation.abs()) * cos(_rotation.abs()), _image!.height + _image!.width * cos(_rotation.abs()) * sin(_rotation.abs()));
+        _pointLeftBottom = Offset(-_image!.height * cos(_rotation.abs()) * sin(_rotation.abs()), _image!.height * cos(_rotation.abs()) * cos(_rotation.abs()));
+      }
       canvas.drawLine(_pointLeftTop, _pointRightTop, Paint());
       canvas.drawLine(_pointRightTop, _pointRightBottom, Paint());
       canvas.drawLine(_pointRightBottom, _pointLeftBottom, Paint());
