@@ -3,6 +3,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_template_app/utils/CenterWithOriginalSizeDelegate.dart';
+import 'package:flutter_template_app/utils/Utils.dart';
 import 'package:flutter_template_app/widget/TestImageView.dart';
 import 'dart:ui' as ui;
 
@@ -76,26 +78,25 @@ class _CustomizePageState extends State<CustomizePage3> {
 
     if (anchorKey.currentContext != null) {
       RenderBox renderBox = anchorKey.currentContext!.findRenderObject()! as RenderBox;
-      var offset = renderBox.localToGlobal(Offset.zero);
-      if(rotation >= 0) {
-        if ((offset.dx - image1!.height * scale * sin(rotation) >= 0 && deltaLeft > 0) || //图像左边缘已经在屏幕内，无法向右再滑动
-            (image1!.width * scale * cos(rotation) + offset.dx <= MediaQuery.of(context).size.width && deltaLeft < 0)) {//图像右边缘已经在屏幕内，无法向左再滑动
-          left -= deltaLeft;
-        }
-        if ((offset.dy >= 0 && deltaTop > 0) ||//图像上边缘已经在屏幕内，无法向下再滑动
-            (offset.dy + image1!.height * scale * cos(rotation) + image1!.width * scale * sin(rotation) <= MediaQuery.of(context).size.height && deltaTop < 0)) {//图像下边缘已经在屏幕内，无法向上再滑动
-          top -= deltaTop;
-        }
-      } else {
-        if ((offset.dx >= 0 && deltaLeft > 0) ||
-            (image1!.width * scale * cos(rotation.abs()) + image1!.height * scale * sin(rotation.abs()) + offset.dx <= MediaQuery.of(context).size.width && deltaLeft < 0)) {
-          left -= deltaLeft;
-        }
-        if ((offset.dy - image1!.width * scale * sin(rotation.abs()) >= 0 && deltaTop > 0) ||
-            (offset.dy + image1!.height * scale * cos(rotation.abs()) <= MediaQuery.of(context).size.height && deltaTop < 0)) {
-          top -= deltaTop;
-        }
+      var leftTop = renderBox.localToGlobal(Offset.zero);
+      var rightTop = renderBox.localToGlobal(Offset(image1!.width.toDouble(), 0));
+      var rightBottom = renderBox.localToGlobal(Offset(image1!.width.toDouble(), image1!.height.toDouble()));
+      var leftBottom = renderBox.localToGlobal(Offset(0, image1!.height.toDouble()));
+
+      Offset leftPoint = getLeftPoint(leftTop, rightTop, rightBottom, leftBottom);
+      Offset rightPoint = getRightPoint(leftTop, rightTop, rightBottom, leftBottom);
+      Offset topPoint = getTopPoint(leftTop, rightTop, rightBottom, leftBottom);
+      Offset bottomPoint = getBottomPoint(leftTop, rightTop, rightBottom, leftBottom);
+
+      if (leftPoint.dx >= 0 && deltaLeft > 0 ||//图像左边缘已经在屏幕内，无法向右再滑动
+          rightPoint.dx <= MediaQuery.of(context).size.width && deltaLeft < 0) {//图像右边缘已经在屏幕内，无法向左再滑动
+        left -= deltaLeft;
       }
+      if (topPoint.dy >= 0 && deltaTop > 0 ||//图像上边缘已经在屏幕内，无法向下再滑动
+          bottomPoint.dy <= MediaQuery.of(context).size.height && deltaTop < 0) {//图像下边缘已经在屏幕内，无法向上再滑动
+        top -= deltaTop;
+      }
+
       fingerPoint = renderBox.globalToLocal(details.focalPoint);
     }
 
@@ -137,9 +138,9 @@ class _CustomizePageState extends State<CustomizePage3> {
               alignment: Alignment.center,
               transform: matrix4,
               child: CustomSingleChildLayout(
-                delegate: _CenterWithOriginalSizeDelegate(Size(image1!.width.toDouble(), image1!.height.toDouble()), Alignment.center),
+                delegate: CenterWithOriginalSizeDelegate(Size(image1!.width.toDouble(), image1!.height.toDouble()), Alignment.center),
                 child: CustomPaint(
-                  painter: TestImageView3(image1!, clickPoint: fingerPoint, rotation: rotation),
+                  painter: TestImageView3(image1!, clickPoint: fingerPoint),
                   size: Size(MediaQuery.of(context).size.width, MediaQuery.of(context).size.height),
                   key: anchorKey,
                 ),
@@ -170,51 +171,4 @@ class _CustomizePageState extends State<CustomizePage3> {
     stream.addListener(ImageStreamListener(listener));
     return completer.future;
   }
-}
-
-class _CenterWithOriginalSizeDelegate extends SingleChildLayoutDelegate {
-  const _CenterWithOriginalSizeDelegate(
-      this.subjectSize,
-      this.basePosition,
-      );
-
-  final Size subjectSize;
-  final Alignment basePosition;
-
-  @override
-  Offset getPositionForChild(Size size, Size childSize) {
-    final childWidth = subjectSize.width;
-    final childHeight = subjectSize.height;
-
-    final halfWidth = (size.width - childWidth) / 2;
-    final halfHeight = (size.height - childHeight) / 2;
-
-    final double offsetX = halfWidth * (basePosition.x + 1);
-    final double offsetY = halfHeight * (basePosition.y + 1);
-    // print("childWidth=${childWidth}, childHeight=${childHeight}, size.width=${size.width}, size.height=${size.height},"
-    //     "offsetX=${offsetX}, offsetY=${offsetY}, basePosition.x=${basePosition.x}, basePosition.y=${basePosition.y}");
-    return Offset(offsetX, offsetY);
-  }
-
-  @override
-  BoxConstraints getConstraintsForChild(BoxConstraints constraints) {
-    return BoxConstraints.tight(subjectSize);
-  }
-
-  @override
-  bool shouldRelayout(_CenterWithOriginalSizeDelegate oldDelegate) {
-    return oldDelegate != this;
-  }
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-          other is _CenterWithOriginalSizeDelegate &&
-              runtimeType == other.runtimeType &&
-              subjectSize == other.subjectSize &&
-              basePosition == other.basePosition;
-
-  @override
-  int get hashCode =>
-      subjectSize.hashCode ^ basePosition.hashCode;
 }
