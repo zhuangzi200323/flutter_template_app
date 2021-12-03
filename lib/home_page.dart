@@ -7,6 +7,7 @@ import 'package:flutter_template_app/themeAndLocal/ThemeModel.dart';
 import 'package:flutter_template_app/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
+import 'OldStudyPage.dart';
 import 'generated/json/base/json_convert_content.dart';
 import 'json/Author.dart';
 import 'json/author2_entity.dart';
@@ -35,7 +36,7 @@ class _HomePageState extends State<HomePage>
   initTabData() {
     tabList = [
       TabTitle(S.of(context).recommend, 0, const AnimationPage()),
-      TabTitle(S.of(context).social, 1, const AnimationPage()),
+      TabTitle("Old study", 1, const OldStudyPage()),
       TabTitle(S.of(context).entertainment, 2, const AnimationPage()),
       TabTitle(S.of(context).sport, 3, const AnimationPage()),
       TabTitle(S.of(context).article, 4, const AnimationPage()),
