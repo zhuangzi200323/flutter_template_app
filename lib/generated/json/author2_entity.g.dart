@@ -2,16 +2,16 @@ import 'package:flutter_template_app/generated/json/base/json_convert_content.da
 import 'package:flutter_template_app/json/author2_entity.dart';
 
 Author2Entity $Author2EntityFromJson(Map<String, dynamic> json) {
-	Author2Entity author2Entity = Author2Entity();
-	var name = jsonConvert.convert<String>(json['name']);
+	final Author2Entity author2Entity = Author2Entity();
+	final String? name = jsonConvert.convert<String>(json['name']);
 	if (name != null) {
 		author2Entity.name = name;
 	}
-	var title = jsonConvert.convert<String>(json['title']);
+	final String? title = jsonConvert.convert<String>(json['title']);
 	if (title != null) {
 		author2Entity.title = title;
 	}
-	var id = jsonConvert.convert<int>(json['id']);
+	final int? id = jsonConvert.convert<int>(json['id']);
 	if (id != null) {
 		author2Entity.id = id;
 	}

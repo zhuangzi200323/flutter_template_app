@@ -19,9 +19,9 @@ class ButtonPage extends StatelessWidget {
                   color: Colors.blue,
                   onPressed: () {},
               ),
-              OutlineButton(
+              OutlinedButton(
                   child: Text("我是 OutlineButton" ),
-                  textColor: Colors.blue,
+                  style: ButtonStyle(foregroundColor: MaterialStateProperty.all(Colors.blue)),
                   onPressed: () {},
               ),
               IconButton(

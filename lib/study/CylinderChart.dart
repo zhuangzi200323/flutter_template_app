@@ -36,7 +36,7 @@ class _CylinderChartState extends State<CylinderChart> {
             Positioned(
               top: 0,
               left: 30,
-              child: OutlineButton(
+              child: OutlinedButton(
                 child: Text('反转'),
                 onPressed: () {
                   setState(() {

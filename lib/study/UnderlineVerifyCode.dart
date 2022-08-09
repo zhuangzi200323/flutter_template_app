@@ -114,7 +114,7 @@ class UnderlineVerifyCode extends StatefulWidget {
     this.countdown = 60,
     this.getSmsCode,
   }) : inputFormatters = inputFormatter ??
-      <TextInputFormatter>[WhitelistingTextInputFormatter.digitsOnly];
+      <TextInputFormatter>[FilteringTextInputFormatter.allow(RegExp("[0-9.]"))];
 
   @override
   State createState() {

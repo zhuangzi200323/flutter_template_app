@@ -47,12 +47,12 @@ class _CameraExampleHomeState extends State<CameraRoute>
   void initState() {
     super.initState();
     // 监听APP状态改变，是否在前台
-    WidgetsBinding.instance!.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance!.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 

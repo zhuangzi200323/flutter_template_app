@@ -11,4 +11,4 @@ PRODUCT_NAME = flutter_template_app
 PRODUCT_BUNDLE_IDENTIFIER = com.jack.flutterTemplateApp
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2021 com.jack. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2022 com.jack. All rights reserved.
