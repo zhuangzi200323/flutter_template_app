@@ -39,8 +39,8 @@ class ObscureStyle {
   final String obscureText;
 
   const ObscureStyle({
-    this.isTextObscure: false,
-    this.obscureText: '*',
+    this.isTextObscure = false,
+    this.obscureText = '*',
   }) : assert(obscureText.length == 1);
 }
 
@@ -61,10 +61,10 @@ class OutlineDecoration extends CodeDecoration {
   const OutlineDecoration({
     TextStyle? textStyle,
     ObscureStyle? obscureStyle,
-    this.enteredColor: const Color(0xff10BFC7),
-    this.gapSpace: 16.0,
-    this.color: const Color(0xff666666),
-    this.lineHeight: 2.0,
+    this.enteredColor = const Color(0xff10BFC7),
+    this.gapSpace = 16.0,
+    this.color = const Color(0xff666666),
+    this.lineHeight = 2.0,
   }) : super(
     textStyle: textStyle,
     obscureStyle: obscureStyle,
@@ -103,18 +103,18 @@ class RoundRectVerifyCode extends StatefulWidget {
   final GetSmsCode? getSmsCode;
 
   RoundRectVerifyCode({
-    this.codeLength: 6,
+    this.codeLength = 6,
     this.onSubmit,
-    this.decoration: const OutlineDecoration(),
+    this.decoration = const OutlineDecoration(),
     List<TextInputFormatter>? inputFormatter,
-    this.keyboardType: TextInputType.number,
+    this.keyboardType = TextInputType.number,
     this.focusNode,
     this.autoFocus = false,
     this.textInputAction = TextInputAction.done,
     this.countdown = 60,
     this.getSmsCode,
   }) : inputFormatters = inputFormatter ??
-      <TextInputFormatter>[FilteringTextInputFormatter.allow(RegExp("[0-9.]"))];
+      <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly];
 
   @override
   State createState() {
@@ -345,7 +345,7 @@ class _CodePaint extends CustomPainter {
     String? text,
     this.codeLength,
     this.decoration,
-    this.space: 4.0,
+    this.space = 4.0,
     this.cursorAlpha,
     this.cursorAnimationListener,
   }) {

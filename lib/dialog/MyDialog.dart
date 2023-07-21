@@ -13,11 +13,11 @@ class MyDialog extends StatelessWidget {
           title: Text("提示"),
           content: Text("您确定要删除当前文件吗?"),
           actions: <Widget>[
-            FlatButton(
+            ElevatedButton(
               child: Text("取消"),
               onPressed: () => Navigator.of(context).pop(), // 关闭对话框
             ),
-            FlatButton(
+            ElevatedButton(
               child: Text("删除"),
               onPressed: () {
                 //关闭对话框并返回true
@@ -244,13 +244,13 @@ class MyDialog extends StatelessWidget {
       ),
       body: Column( // 显示进度条
         children: <Widget>[
-          RaisedButton(
+          ElevatedButton(
             child: Text("我的对话框"),
             onPressed: () {
               showMyDlg(context);
             },
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text("alert dialog" ),
             onPressed: () async {
               //弹出对话框并等待其关闭
@@ -262,19 +262,19 @@ class MyDialog extends StatelessWidget {
               }
             },
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text("改变语言" ),
             onPressed: () {
               changeLanguage(context);
             },
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text("show list dialog" ),
             onPressed: () {
               showListDialog(context);
             },
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text("showCustomDialog" ),
             onPressed: () {
               showCustomDialog<bool>(
@@ -284,11 +284,11 @@ class MyDialog extends StatelessWidget {
                     title: Text("提示"),
                     content: Text("您确定要删除当前文件吗?"),
                     actions: <Widget>[
-                      FlatButton(
+                      ElevatedButton(
                         child: Text("取消"),
                         onPressed: () => Navigator.of(context).pop(),
                       ),
-                      FlatButton(
+                      ElevatedButton(
                         child: Text("删除"),
                         onPressed: () {
                           // 执行删除操作

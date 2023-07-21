@@ -1,4 +1,4 @@
-package com.jack.flutter_template_app;
+package com.jack.flutter_template_app.flutter_template_app;
 
 import io.flutter.embedding.android.FlutterActivity;
 

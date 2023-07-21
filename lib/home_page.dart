@@ -78,7 +78,7 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     Map<String, dynamic> jsonMap = json.decode('{\"name\": \"jack\",\"title\": \"test\",\"id\": 2}');
-    Author2Entity? author2entity = JsonConvert.fromJsonAsT<Author2Entity>(jsonMap);
+    Author2Entity author2entity = JsonConvert.fromJsonAsT<Author2Entity>(jsonMap);
     Author author = Author.fromJson(jsonMap);
 
     if(controller == null){

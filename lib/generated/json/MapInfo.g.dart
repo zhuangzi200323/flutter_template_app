@@ -4,28 +4,28 @@ import 'dart:ui';
 
 
 MapInfo $MapInfoFromJson(Map<String, dynamic> json) {
-	final MapInfo mapInfo = MapInfo();
-	final DataBean? data = jsonConvert.convert<DataBean>(json['data']);
+	MapInfo mapInfo = MapInfo();
+	var data = jsonConvert.convert<DataBean>(json['data']);
 	if (data != null) {
 		mapInfo.data = data;
 	}
-	final String? module = jsonConvert.convert<String>(json['module']);
+	var module = jsonConvert.convert<String>(json['module']);
 	if (module != null) {
 		mapInfo.module = module;
 	}
-	final int? result_code = jsonConvert.convert<int>(json['result_code']);
+	var result_code = jsonConvert.convert<int>(json['result_code']);
 	if (result_code != null) {
 		mapInfo.result_code = result_code;
 	}
-	final String? result_msg = jsonConvert.convert<String>(json['result_msg']);
+	var result_msg = jsonConvert.convert<String>(json['result_msg']);
 	if (result_msg != null) {
 		mapInfo.result_msg = result_msg;
 	}
-	final String? result_serial_number = jsonConvert.convert<String>(json['result_serial_number']);
+	var result_serial_number = jsonConvert.convert<String>(json['result_serial_number']);
 	if (result_serial_number != null) {
 		mapInfo.result_serial_number = result_serial_number;
 	}
-	final String? result_stamp = jsonConvert.convert<String>(json['result_stamp']);
+	var result_stamp = jsonConvert.convert<String>(json['result_stamp']);
 	if (result_stamp != null) {
 		mapInfo.result_stamp = result_stamp;
 	}
@@ -44,8 +44,8 @@ Map<String, dynamic> $MapInfoToJson(MapInfo entity) {
 }
 
 DataBean $DataBeanFromJson(Map<String, dynamic> json) {
-	final DataBean dataBean = DataBean();
-	final List<ProjectsBean>? projects = jsonConvert.convertListNotNull<ProjectsBean>(json['projects']);
+	DataBean dataBean = DataBean();
+	var projects = jsonConvert.convertListNotNull<ProjectsBean>(json['projects']);
 	if (projects != null) {
 		dataBean.projects = projects;
 	}
@@ -59,28 +59,28 @@ Map<String, dynamic> $DataBeanToJson(DataBean entity) {
 }
 
 ProjectsBean $ProjectsBeanFromJson(Map<String, dynamic> json) {
-	final ProjectsBean projectsBean = ProjectsBean();
-	final String? map_data = jsonConvert.convert<String>(json['map_data']);
+	ProjectsBean projectsBean = ProjectsBean();
+	var map_data = jsonConvert.convert<String>(json['map_data']);
 	if (map_data != null) {
 		projectsBean.map_data = map_data;
 	}
-	final MapInfoBeanX? map_info = jsonConvert.convert<MapInfoBeanX>(json['map_info']);
+	var map_info = jsonConvert.convert<MapInfoBeanX>(json['map_info']);
 	if (map_info != null) {
 		projectsBean.map_info = map_info;
 	}
-	final ObstaclesBeanX? obstacles = jsonConvert.convert<ObstaclesBeanX>(json['obstacles']);
+	var obstacles = jsonConvert.convert<ObstaclesBeanX>(json['obstacles']);
 	if (obstacles != null) {
 		projectsBean.obstacles = obstacles;
 	}
-	final PositionsBeanX? positions = jsonConvert.convert<PositionsBeanX>(json['positions']);
+	var positions = jsonConvert.convert<PositionsBeanX>(json['positions']);
 	if (positions != null) {
 		projectsBean.positions = positions;
 	}
-	final ProjectInfoBean? project_info = jsonConvert.convert<ProjectInfoBean>(json['project_info']);
+	var project_info = jsonConvert.convert<ProjectInfoBean>(json['project_info']);
 	if (project_info != null) {
 		projectsBean.project_info = project_info;
 	}
-	final ScriptsBeanX? scripts = jsonConvert.convert<ScriptsBeanX>(json['scripts']);
+	var scripts = jsonConvert.convert<ScriptsBeanX>(json['scripts']);
 	if (scripts != null) {
 		projectsBean.scripts = scripts;
 	}
@@ -99,16 +99,16 @@ Map<String, dynamic> $ProjectsBeanToJson(ProjectsBean entity) {
 }
 
 MapInfoBeanX $MapInfoBeanXFromJson(Map<String, dynamic> json) {
-	final MapInfoBeanX mapInfoBeanX = MapInfoBeanX();
-	final MapInfoBean? map_info = jsonConvert.convert<MapInfoBean>(json['map_info']);
+	MapInfoBeanX mapInfoBeanX = MapInfoBeanX();
+	var map_info = jsonConvert.convert<MapInfoBean>(json['map_info']);
 	if (map_info != null) {
 		mapInfoBeanX.map_info = map_info;
 	}
-	final String? pgm_name = jsonConvert.convert<String>(json['pgm_name']);
+	var pgm_name = jsonConvert.convert<String>(json['pgm_name']);
 	if (pgm_name != null) {
 		mapInfoBeanX.pgm_name = pgm_name;
 	}
-	final String? png_name = jsonConvert.convert<String>(json['png_name']);
+	var png_name = jsonConvert.convert<String>(json['png_name']);
 	if (png_name != null) {
 		mapInfoBeanX.png_name = png_name;
 	}
@@ -124,28 +124,28 @@ Map<String, dynamic> $MapInfoBeanXToJson(MapInfoBeanX entity) {
 }
 
 MapInfoBean $MapInfoBeanFromJson(Map<String, dynamic> json) {
-	final MapInfoBean mapInfoBean = MapInfoBean();
-	final int? height = jsonConvert.convert<int>(json['height']);
+	MapInfoBean mapInfoBean = MapInfoBean();
+	var height = jsonConvert.convert<int>(json['height']);
 	if (height != null) {
 		mapInfoBean.height = height;
 	}
-	final int? origin_theta = jsonConvert.convert<int>(json['origin_theta']);
+	var origin_theta = jsonConvert.convert<int>(json['origin_theta']);
 	if (origin_theta != null) {
 		mapInfoBean.origin_theta = origin_theta;
 	}
-	final double? origin_x = jsonConvert.convert<double>(json['origin_x']);
+	var origin_x = jsonConvert.convert<double>(json['origin_x']);
 	if (origin_x != null) {
 		mapInfoBean.origin_x = origin_x;
 	}
-	final double? origin_y = jsonConvert.convert<double>(json['origin_y']);
+	var origin_y = jsonConvert.convert<double>(json['origin_y']);
 	if (origin_y != null) {
 		mapInfoBean.origin_y = origin_y;
 	}
-	final double? resolution = jsonConvert.convert<double>(json['resolution']);
+	var resolution = jsonConvert.convert<double>(json['resolution']);
 	if (resolution != null) {
 		mapInfoBean.resolution = resolution;
 	}
-	final int? width = jsonConvert.convert<int>(json['width']);
+	var width = jsonConvert.convert<int>(json['width']);
 	if (width != null) {
 		mapInfoBean.width = width;
 	}
@@ -164,8 +164,8 @@ Map<String, dynamic> $MapInfoBeanToJson(MapInfoBean entity) {
 }
 
 ObstaclesBeanX $ObstaclesBeanXFromJson(Map<String, dynamic> json) {
-	final ObstaclesBeanX obstaclesBeanX = ObstaclesBeanX();
-	final ObstaclesBean? obstacles = jsonConvert.convert<ObstaclesBean>(json['obstacles']);
+	ObstaclesBeanX obstaclesBeanX = ObstaclesBeanX();
+	var obstacles = jsonConvert.convert<ObstaclesBean>(json['obstacles']);
 	if (obstacles != null) {
 		obstaclesBeanX.obstacles = obstacles;
 	}
@@ -179,20 +179,20 @@ Map<String, dynamic> $ObstaclesBeanXToJson(ObstaclesBeanX entity) {
 }
 
 ObstaclesBean $ObstaclesBeanFromJson(Map<String, dynamic> json) {
-	final ObstaclesBean obstaclesBean = ObstaclesBean();
-	final List<int>? circles = jsonConvert.convertListNotNull<int>(json['circles']);
+	ObstaclesBean obstaclesBean = ObstaclesBean();
+	var circles = jsonConvert.convertListNotNull<int>(json['circles']);
 	if (circles != null) {
 		obstaclesBean.circles = circles;
 	}
-	final List<int>? polygons = jsonConvert.convertListNotNull<int>(json['polygons']);
+	var polygons = jsonConvert.convertListNotNull<int>(json['polygons']);
 	if (polygons != null) {
 		obstaclesBean.polygons = polygons;
 	}
-	final List<int>? polylines = jsonConvert.convertListNotNull<int>(json['polylines']);
+	var polylines = jsonConvert.convertListNotNull<int>(json['polylines']);
 	if (polylines != null) {
 		obstaclesBean.polylines = polylines;
 	}
-	final List<int>? rectangles = jsonConvert.convertListNotNull<int>(json['rectangles']);
+	var rectangles = jsonConvert.convertListNotNull<int>(json['rectangles']);
 	if (rectangles != null) {
 		obstaclesBean.rectangles = rectangles;
 	}
@@ -209,8 +209,8 @@ Map<String, dynamic> $ObstaclesBeanToJson(ObstaclesBean entity) {
 }
 
 PositionsBeanX $PositionsBeanXFromJson(Map<String, dynamic> json) {
-	final PositionsBeanX positionsBeanX = PositionsBeanX();
-	final List<PositionsBean>? positions = jsonConvert.convertListNotNull<PositionsBean>(json['positions']);
+	PositionsBeanX positionsBeanX = PositionsBeanX();
+	var positions = jsonConvert.convertListNotNull<PositionsBean>(json['positions']);
 	if (positions != null) {
 		positionsBeanX.positions = positions;
 	}
@@ -224,16 +224,16 @@ Map<String, dynamic> $PositionsBeanXToJson(PositionsBeanX entity) {
 }
 
 PositionsBean $PositionsBeanFromJson(Map<String, dynamic> json) {
-	final PositionsBean positionsBean = PositionsBean();
-	final String? name = jsonConvert.convert<String>(json['name']);
+	PositionsBean positionsBean = PositionsBean();
+	var name = jsonConvert.convert<String>(json['name']);
 	if (name != null) {
 		positionsBean.name = name;
 	}
-	final PositionBean? position = jsonConvert.convert<PositionBean>(json['position']);
+	var position = jsonConvert.convert<PositionBean>(json['position']);
 	if (position != null) {
 		positionsBean.position = position;
 	}
-	final int? type = jsonConvert.convert<int>(json['type']);
+	var type = jsonConvert.convert<int>(json['type']);
 	if (type != null) {
 		positionsBean.type = type;
 	}
@@ -249,44 +249,44 @@ Map<String, dynamic> $PositionsBeanToJson(PositionsBean entity) {
 }
 
 PositionBean $PositionBeanFromJson(Map<String, dynamic> json) {
-	final PositionBean positionBean = PositionBean();
-	final double? theta = jsonConvert.convert<double>(json['theta']);
+	PositionBean positionBean = PositionBean();
+	var theta = jsonConvert.convert<double>(json['theta']);
 	if (theta != null) {
 		positionBean.theta = theta;
 	}
-	final double? world_x = jsonConvert.convert<double>(json['world_x']);
+	var world_x = jsonConvert.convert<double>(json['world_x']);
 	if (world_x != null) {
 		positionBean.world_x = world_x;
 	}
-	final double? world_y = jsonConvert.convert<double>(json['world_y']);
+	var world_y = jsonConvert.convert<double>(json['world_y']);
 	if (world_y != null) {
 		positionBean.world_y = world_y;
 	}
-	final double? show_x = jsonConvert.convert<double>(json['show_x']);
+	var show_x = jsonConvert.convert<double>(json['show_x']);
 	if (show_x != null) {
 		positionBean.show_x = show_x;
 	}
-	final double? show_y = jsonConvert.convert<double>(json['show_y']);
+	var show_y = jsonConvert.convert<double>(json['show_y']);
 	if (show_y != null) {
 		positionBean.show_y = show_y;
 	}
-	final double? rect_left = jsonConvert.convert<double>(json['rect_left']);
+	var rect_left = jsonConvert.convert<double>(json['rect_left']);
 	if (rect_left != null) {
 		positionBean.rect_left = rect_left;
 	}
-	final double? rect_top = jsonConvert.convert<double>(json['rect_top']);
+	var rect_top = jsonConvert.convert<double>(json['rect_top']);
 	if (rect_top != null) {
 		positionBean.rect_top = rect_top;
 	}
-	final double? rect_width = jsonConvert.convert<double>(json['rect_width']);
+	var rect_width = jsonConvert.convert<double>(json['rect_width']);
 	if (rect_width != null) {
 		positionBean.rect_width = rect_width;
 	}
-	final double? rect_height = jsonConvert.convert<double>(json['rect_height']);
+	var rect_height = jsonConvert.convert<double>(json['rect_height']);
 	if (rect_height != null) {
 		positionBean.rect_height = rect_height;
 	}
-	final bool? isSelect = jsonConvert.convert<bool>(json['isSelect']);
+	var isSelect = jsonConvert.convert<bool>(json['isSelect']);
 	if (isSelect != null) {
 		positionBean.isSelect = isSelect;
 	}
@@ -309,28 +309,28 @@ Map<String, dynamic> $PositionBeanToJson(PositionBean entity) {
 }
 
 ProjectInfoBean $ProjectInfoBeanFromJson(Map<String, dynamic> json) {
-	final ProjectInfoBean projectInfoBean = ProjectInfoBean();
-	final String? map_name = jsonConvert.convert<String>(json['map_name']);
+	ProjectInfoBean projectInfoBean = ProjectInfoBean();
+	var map_name = jsonConvert.convert<String>(json['map_name']);
 	if (map_name != null) {
 		projectInfoBean.map_name = map_name;
 	}
-	final String? obstacle_name = jsonConvert.convert<String>(json['obstacle_name']);
+	var obstacle_name = jsonConvert.convert<String>(json['obstacle_name']);
 	if (obstacle_name != null) {
 		projectInfoBean.obstacle_name = obstacle_name;
 	}
-	final String? positions_name = jsonConvert.convert<String>(json['positions_name']);
+	var positions_name = jsonConvert.convert<String>(json['positions_name']);
 	if (positions_name != null) {
 		projectInfoBean.positions_name = positions_name;
 	}
-	final String? project_id = jsonConvert.convert<String>(json['project_id']);
+	var project_id = jsonConvert.convert<String>(json['project_id']);
 	if (project_id != null) {
 		projectInfoBean.project_id = project_id;
 	}
-	final String? project_name = jsonConvert.convert<String>(json['project_name']);
+	var project_name = jsonConvert.convert<String>(json['project_name']);
 	if (project_name != null) {
 		projectInfoBean.project_name = project_name;
 	}
-	final String? project_stamp = jsonConvert.convert<String>(json['project_stamp']);
+	var project_stamp = jsonConvert.convert<String>(json['project_stamp']);
 	if (project_stamp != null) {
 		projectInfoBean.project_stamp = project_stamp;
 	}
@@ -349,8 +349,8 @@ Map<String, dynamic> $ProjectInfoBeanToJson(ProjectInfoBean entity) {
 }
 
 ScriptsBeanX $ScriptsBeanXFromJson(Map<String, dynamic> json) {
-	final ScriptsBeanX scriptsBeanX = ScriptsBeanX();
-	final List<ScriptsBean>? scripts = jsonConvert.convertListNotNull<ScriptsBean>(json['scripts']);
+	ScriptsBeanX scriptsBeanX = ScriptsBeanX();
+	var scripts = jsonConvert.convertListNotNull<ScriptsBean>(json['scripts']);
 	if (scripts != null) {
 		scriptsBeanX.scripts = scripts;
 	}
@@ -364,12 +364,12 @@ Map<String, dynamic> $ScriptsBeanXToJson(ScriptsBeanX entity) {
 }
 
 ScriptsBean $ScriptsBeanFromJson(Map<String, dynamic> json) {
-	final ScriptsBean scriptsBean = ScriptsBean();
-	final String? data = jsonConvert.convert<String>(json['data']);
+	ScriptsBean scriptsBean = ScriptsBean();
+	var data = jsonConvert.convert<String>(json['data']);
 	if (data != null) {
 		scriptsBean.data = data;
 	}
-	final String? script_name = jsonConvert.convert<String>(json['script_name']);
+	var script_name = jsonConvert.convert<String>(json['script_name']);
 	if (script_name != null) {
 		scriptsBean.script_name = script_name;
 	}

@@ -4,16 +4,16 @@ import 'package:json_annotation/json_annotation.dart';
 
 
 Author $AuthorFromJson(Map<String, dynamic> json) {
-	final Author author = Author();
-	final String? name = jsonConvert.convert<String>(json['name']);
+	Author author = Author();
+	var name = jsonConvert.convert<String>(json['name']);
 	if (name != null) {
 		author.name = name;
 	}
-	final String? title = jsonConvert.convert<String>(json['title']);
+	var title = jsonConvert.convert<String>(json['title']);
 	if (title != null) {
 		author.title = title;
 	}
-	final int? id = jsonConvert.convert<int>(json['id']);
+	var id = jsonConvert.convert<int>(json['id']);
 	if (id != null) {
 		author.id = id;
 	}

@@ -33,7 +33,7 @@ class AnimatedSwitcherCounterRoute3 extends StatefulWidget {
                  style: Theme.of(context).textTheme.headline4,
                ),
              ),
-             RaisedButton(
+             ElevatedButton(
                child: const Text('+1',),
                onPressed: () {
                  setState(() {

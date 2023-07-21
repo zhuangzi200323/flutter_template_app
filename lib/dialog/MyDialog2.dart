@@ -20,7 +20,7 @@ class _MyDialog2State extends State<MyDialog2> {
       ),
       body: Column(
         children: <Widget>[
-          RaisedButton(
+          ElevatedButton(
             child: Text("对话框2"),
             onPressed: () async {
               bool? delete = await showDeleteConfirmDialog2();
@@ -31,7 +31,7 @@ class _MyDialog2State extends State<MyDialog2> {
               }
             },
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text("话框3（复选框可点击）"),
             onPressed: () async {
               //弹出删除确认对话框，等待用户确认
@@ -43,7 +43,7 @@ class _MyDialog2State extends State<MyDialog2> {
               }
             },
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text("话框5（复选框可点击）"),
             onPressed: () async {
               //弹出删除确认对话框，等待用户确认
@@ -55,7 +55,7 @@ class _MyDialog2State extends State<MyDialog2> {
               }
             },
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text("话框4（复选框可点击）"),
             onPressed: () async {
               //弹出删除确认对话框，等待用户确认
@@ -67,7 +67,7 @@ class _MyDialog2State extends State<MyDialog2> {
               }
             },
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text("底部对话框"),
             onPressed: () async {
               //弹出删除确认对话框，等待用户确认
@@ -75,32 +75,32 @@ class _MyDialog2State extends State<MyDialog2> {
               print("onValue = " + value.toString());
             },
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text("从底部弹出整个屏幕对话框"),
             onPressed: () {
               PersistentBottomSheetController<int> result = _showBottomSheet();
               print(result);
             },
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text("loading dialog"),
             onPressed: () {
               showLoadingDialog();
             },
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text("loading dialog2"),
             onPressed: () {
               showLoadingDialog2();
             },
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text("datetime picker1"),
             onPressed: () {
               _showDatePicker1();
             },
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text("datetime picker2"),
             onPressed: () {
               _showDatePicker2();
@@ -141,11 +141,11 @@ class _MyDialog2State extends State<MyDialog2> {
             ],
           ),
           actions: <Widget>[
-            FlatButton(
+            ElevatedButton(
               child: Text("取消"),
               onPressed: () => Navigator.of(context).pop(),
             ),
-            FlatButton(
+            ElevatedButton(
               child: Text("删除"),
               onPressed: () {
                 //执行删除操作
@@ -185,11 +185,11 @@ class _MyDialog2State extends State<MyDialog2> {
             ],
           ),
           actions: <Widget>[
-            FlatButton(
+            ElevatedButton(
               child: Text("取消"),
               onPressed: () => Navigator.of(context).pop(),
             ),
-            FlatButton(
+            ElevatedButton(
               child: Text("删除"),
               onPressed: () {
                 // 将选中状态返回
@@ -237,11 +237,11 @@ class _MyDialog2State extends State<MyDialog2> {
             ],
           ),
           actions: <Widget>[
-            FlatButton(
+            ElevatedButton(
               child: Text("取消"),
               onPressed: () => Navigator.of(context).pop(),
             ),
-            FlatButton(
+            ElevatedButton(
               child: Text("删除"),
               onPressed: () {
                 // 将选中状态返回
@@ -295,11 +295,11 @@ class _MyDialog2State extends State<MyDialog2> {
             ],
           ),
           actions: <Widget>[
-            FlatButton(
+            ElevatedButton(
               child: Text("取消"),
               onPressed: () => Navigator.of(context).pop(),
             ),
-            FlatButton(
+            ElevatedButton(
               child: Text("删除"),
               onPressed: () {
                 // 执行删除操作

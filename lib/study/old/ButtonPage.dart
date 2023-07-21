@@ -10,18 +10,18 @@ class ButtonPage extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
-             RaisedButton(
+          ElevatedButton(
                   child: Text("我是 RaiseButton" ),
                   onPressed: () {},
               ),
-               FlatButton(
+          TextButton(
                   child: Text("我是 FlatButton" ),
-                  color: Colors.blue,
+                  // color: Colors.blue,
                   onPressed: () {},
               ),
               OutlinedButton(
-                  child: Text("我是 OutlineButton" ),
-                  style: ButtonStyle(foregroundColor: MaterialStateProperty.all(Colors.blue)),
+                  child: Text("我是 OutlineButton"),
+                  // textColor: Colors.blue,
                   onPressed: () {},
               ),
               IconButton(

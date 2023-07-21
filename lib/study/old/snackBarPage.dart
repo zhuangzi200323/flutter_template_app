@@ -17,43 +17,46 @@ class _SnackBarPage extends State<SnackBarPage> {
       body: Center(
         child: Column(
           children: <Widget>[
-            RaisedButton(
+            ElevatedButton(
                 child: Text("SnackBar1" ),
                 onPressed: () {
                   // 查找父级最近的Scaffold对应的ScaffoldState对象
                   ScaffoldState? _state = context.findAncestorStateOfType<ScaffoldState>();
                   //调用ScaffoldState的showSnackBar来弹出SnackBar
-                  _state!.showSnackBar(
-                    SnackBar(
-                      content: Text("我是SnackBar"),
-                    ),
-                  );
+                  // _state!.showSnackBar(
+                  //   SnackBar(
+                  //     content: Text("我是SnackBar"),
+                  //   ),
+                  // );
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("我是SnackBar")));
                 }
             ),
-            RaisedButton(
+            ElevatedButton(
                 child: Text("SnackBar2" ),
                 onPressed: () {
                   // 查找父级最近的Scaffold对应的ScaffoldState对象
                   ScaffoldState? _state = context.findAncestorStateOfType();
                   //调用ScaffoldState的showSnackBar来弹出SnackBar
-                  _state!.showSnackBar(
-                    SnackBar(
-                      content: Text("我是SnackBar"),
-                    ),
-                  );
+                  // _state!.showSnackBar(
+                  //   SnackBar(
+                  //     content: Text("我是SnackBar"),
+                  //   ),
+                  // );
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("我是SnackBar")));
                 }
             ),
-            RaisedButton(
+            ElevatedButton(
                 child: Text("SnackBar3" ),
                 onPressed: () {
                   // 查找父级最近的Scaffold对应的ScaffoldState对象
                   ScaffoldState _state=Scaffold.of(context);
                   //调用ScaffoldState的showSnackBar来弹出SnackBar
-                  _state.showSnackBar(
-                    SnackBar(
-                      content: Text("我是SnackBar"),
-                    ),
-                  );
+                  // _state.showSnackBar(
+                  //   SnackBar(
+                  //     content: Text("我是SnackBar"),
+                  //   ),
+                  // );
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("我是SnackBar")));
                 }
             ),
           ],

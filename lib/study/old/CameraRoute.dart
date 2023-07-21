@@ -47,12 +47,12 @@ class _CameraExampleHomeState extends State<CameraRoute>
   void initState() {
     super.initState();
     // 监听APP状态改变，是否在前台
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance!.addObserver(this);
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
+    WidgetsBinding.instance!.removeObserver(this);
     super.dispose();
   }
 
@@ -257,7 +257,8 @@ class _CameraExampleHomeState extends State<CameraRoute>
   String timestamp() => DateTime.now().millisecondsSinceEpoch.toString();
 
   void showInSnackBar(String message) {
-    _scaffoldKey.currentState!.showSnackBar(SnackBar(content: Text(message)));
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+    //_scaffoldKey.currentState!.showSnackBar(SnackBar(content: Text(message)));
   }
 
   // 摄像头选中回调

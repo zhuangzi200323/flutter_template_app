@@ -26,7 +26,7 @@ class _StreamBuilderPage extends State<StreamBuilderPage> {
           Text(
             json,
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text("http request" ),
             onPressed: () {
               Future future = _getByHttpClient();

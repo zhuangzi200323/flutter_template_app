@@ -559,7 +559,8 @@ class _CameraExampleHomeState extends State<CameraExampleHome2>
 
   void showInSnackBar(String message) {
     // ignore: deprecated_member_use
-    _scaffoldKey.currentState?.showSnackBar(SnackBar(content: Text(message)));
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+    // _scaffoldKey.currentState?.showSnackBar(SnackBar(content: Text(message)));
   }
 
   void onViewFinderTap(TapDownDetails details, BoxConstraints constraints) {

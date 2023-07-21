@@ -22,7 +22,7 @@ class AnimatedDecorateBoxRoute extends StatefulWidget {
              AnimatedDecoratedBox(
                duration: Duration(seconds: 1),
                decoration: BoxDecoration(color: _decorationColor),
-               child: FlatButton(
+               child: ElevatedButton(
                    onPressed: () {
                      setState(() {
                        _decorationColor = _decorationColor == Colors.blue

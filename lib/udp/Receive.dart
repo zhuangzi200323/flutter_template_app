@@ -8,10 +8,10 @@ main() async {
   var receiver = await UDP.bind(Endpoint.any(port: Port(6666)));
 
   // receiving\listening
-  await receiver.listen((datagram) {
-    var str = String.fromCharCodes(datagram.data);
+  await receiver.asStream(timeout: Duration(seconds: 20)).listen((datagram) {
+    var str = String.fromCharCodes(datagram!.data);
     print(str);
-  }, timeout: Duration(seconds: 200));
+  });
 
   // close the UDP instances and their sockets.
   receiver.close();

@@ -50,7 +50,7 @@ class _FocusTestRouteState extends State<FocusTestRoute> {
             Builder(builder: (ctx) {
               return Column(
                 children: <Widget>[
-                  RaisedButton(
+                  ElevatedButton(
                     child: Text("移动焦点"),
                     onPressed: () {
                       //将焦点从第一个TextField移到第二个TextField
@@ -62,7 +62,7 @@ class _FocusTestRouteState extends State<FocusTestRoute> {
                       focusScopeNode.requestFocus(focusNode2);
                     },
                   ),
-                  RaisedButton(
+                  ElevatedButton(
                     child: Text("隐藏键盘"),
                     onPressed: () {
                       // 当所有编辑框都失去焦点时键盘就会收起

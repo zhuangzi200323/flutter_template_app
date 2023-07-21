@@ -30,7 +30,7 @@ class _ProviderRouteState extends State<ProviderRoute> {
                 }),
                 Builder(builder: (context){
                   print("RaisedButton build"); //在后面优化部分会用到
-                  return RaisedButton(
+                  return ElevatedButton(
                     child: Text("添加商品", style: TextStyle(color: Colors.blue),),
                     onPressed: () {
                       //给购物车中添加商品，添加后总价会更新
