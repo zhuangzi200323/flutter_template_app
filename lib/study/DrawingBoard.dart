@@ -12,32 +12,37 @@ class _DrawingBoardState extends State<DrawingBoard> {
 
   @override
   Widget build(BuildContext context) {
-    return Listener(
-      onPointerDown: (PointerDownEvent pointerDownEvent) {
-        setState(() {
-          _path.add([pointerDownEvent.localPosition]);
-        });
-      },
-      onPointerMove: (PointerMoveEvent pointerMoveEvent) {
-        setState(() {
-          _path[_path.length-1].add(pointerMoveEvent.localPosition);
-        });
-      },
-      onPointerUp: (PointerUpEvent pointerUpEvent) {
-        setState(() {
-          _path[_path.length-1].add(pointerUpEvent.localPosition);
-        });
-      },
-      onPointerCancel: (PointerCancelEvent pointerCancelEvent) {
-        setState(() {
-          _path[_path.length-1].add(pointerCancelEvent.localPosition);
-        });
-      },
-      child: Container(
-        width: double.infinity,
-        height: double.infinity,
-        child: CustomPaint(
-          painter: DrawingBoardPainter(_path),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("DrawingBoard"),
+      ),
+      body: Listener(
+        onPointerDown: (PointerDownEvent pointerDownEvent) {
+          setState(() {
+            _path.add([pointerDownEvent.localPosition]);
+          });
+        },
+        onPointerMove: (PointerMoveEvent pointerMoveEvent) {
+          setState(() {
+            _path[_path.length-1].add(pointerMoveEvent.localPosition);
+          });
+        },
+        onPointerUp: (PointerUpEvent pointerUpEvent) {
+          setState(() {
+            _path[_path.length-1].add(pointerUpEvent.localPosition);
+          });
+        },
+        onPointerCancel: (PointerCancelEvent pointerCancelEvent) {
+          setState(() {
+            _path[_path.length-1].add(pointerCancelEvent.localPosition);
+          });
+        },
+        child: Container(
+          width: double.infinity,
+          height: double.infinity,
+          child: CustomPaint(
+            painter: DrawingBoardPainter(_path),
+          ),
         ),
       ),
     );

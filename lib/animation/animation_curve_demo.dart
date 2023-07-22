@@ -36,10 +36,17 @@ class _AnimationCurveDemoState extends State<AnimationCurveDemo> with SingleTick
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("AnimationCurveDemo"),
+      ),
       body: Center(
         child: GestureDetector(
           onTap: () {
-            _controller!.forward();
+            if (_controller!.status == AnimationStatus.completed) {
+              _controller!.reverse();
+            } else {
+              _controller!.forward();
+            }
           },
           child: Container(
             height: _animation!.value,

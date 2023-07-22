@@ -27,7 +27,7 @@ class _OldStudyPageState extends State<OldStudyPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -38,7 +38,7 @@ class _OldStudyPageState extends State<OldStudyPage> {
               Scaffold? scaffold = context.findAncestorWidgetOfExactType<Scaffold>();
               // 直接返回 AppBar的title， 此处实际上是Text("Old study")
               //return (scaffold!.appBar as AppBar).title!;
-              return Text("Old study");
+              return const Text("Old study");
             },),
             ElevatedButton(
               //color: Colors.blue,
@@ -132,7 +132,7 @@ class _OldStudyPageState extends State<OldStudyPage> {
               },
             ),
             ElevatedButton(
-              child: Text("AnimatePage2" ),
+              child: const Text("AnimatePage2" ),
               onPressed: () {
                 Navigator.pushNamed(context, "AnimatePage2");
               },
@@ -156,13 +156,13 @@ class _OldStudyPageState extends State<OldStudyPage> {
               },
             ),
             ElevatedButton(
-              child: Text("SwitchAndCheckBoxTestRoute" ),
+              child: const Text("SwitchAndCheckBoxTestRoute" ),
               onPressed: () {
                 Navigator.pushNamed(context, "SwitchAndCheckBoxTestRoute");
               },
             ),
             ElevatedButton(
-              child: Text("FocusTestRoute" ),
+              child: const Text("FocusTestRoute" ),
               onPressed: () {
                 Navigator.pushNamed(context, "FocusTestRoute");
               },

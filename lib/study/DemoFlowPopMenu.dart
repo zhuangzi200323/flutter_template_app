@@ -65,6 +65,9 @@ class _DemoFlowPopMenuState extends State<DemoFlowPopMenu>
       return Container(height: 0, width: 0,);
     }
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Demo flow pop menu"),
+      ),
       body: Center(
         child: Flow(
           delegate: FlowMenuDelegate(animation: _ctrlAnimationPopMenu!),

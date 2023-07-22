@@ -15,9 +15,7 @@ class _VerifyCodePageState extends State<VerifyCodePage2> {
   Future<SharedPreferences> prefs = SharedPreferences.getInstance();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   FocusNode blankNode = FocusNode();
-  //定义controller
-  TextEditingController mailController = TextEditingController();
-  TextEditingController pwdController = TextEditingController();
+
   FocusNode verifyCodeFocusNode1 = FocusNode();
   FocusNode verifyCodeFocusNode2 = FocusNode();
   FocusNode verifyCodeFocusNode3 = FocusNode();
@@ -30,22 +28,7 @@ class _VerifyCodePageState extends State<VerifyCodePage2> {
   FocusNode keyboardFocusNode4 = FocusNode();
   FocusNode keyboardFocusNode5 = FocusNode();
   FocusNode keyboardFocusNode6 = FocusNode();
-  bool showMailTextEditClearIcon = false;
-  bool showPwdTextEditClearIcon = false;
-  bool showPwd = false;
   var verifyCode = ["", "", "", "", "", ""];
-
-  void mailTextEditValueChange(String value) {
-    setState(() {
-      showMailTextEditClearIcon = value.length > 0;
-    });
-  }
-
-  void pwdTextEditValueChange(String value) {
-    setState(() {
-      showPwdTextEditClearIcon = value.length > 0;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,10 +48,10 @@ class _VerifyCodePageState extends State<VerifyCodePage2> {
             child: Column(
               children: [
                 Padding(padding: EdgeInsets.only(top: statusBarHeight)),
-                Padding(padding: EdgeInsets.only(top: 5)),
+                const Padding(padding: EdgeInsets.only(top: 5)),
                 Row(
                   children: [
-                    IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: (){
+                    IconButton(icon: const Icon(Icons.arrow_back_ios), onPressed: (){
                       Navigator.pop(context);
                     }),
                     Expanded(child: Text(S.of(context).new_user_register, textAlign: TextAlign.center,)),
@@ -77,12 +60,12 @@ class _VerifyCodePageState extends State<VerifyCodePage2> {
                         maintainState:true,
                         maintainAnimation: true,
                         maintainSize:true,
-                        child: IconButton(icon: Icon(Icons.arrow_back_ios, color: Colors.white,), onPressed: () {  },)
+                        child: IconButton(icon: const Icon(Icons.arrow_back_ios, color: Colors.white,), onPressed: () {  },)
                     ),
                   ],
                 ),
-                Padding(padding: EdgeInsets.only(top: 30)),
-                Row(
+                const Padding(padding: EdgeInsets.only(top: 30)),
+                const Row(
                   children: [
                     Padding(padding: EdgeInsets.only(left: 20)),
                     Expanded(
@@ -90,7 +73,7 @@ class _VerifyCodePageState extends State<VerifyCodePage2> {
                     )
                   ],
                 ),
-                Row(
+                const Row(
                   children: [
                     Padding(padding: EdgeInsets.only(left: 20)),
                     Expanded(
@@ -98,7 +81,7 @@ class _VerifyCodePageState extends State<VerifyCodePage2> {
                     )
                   ],
                 ),
-                Padding(padding: EdgeInsets.only(top: 30)),
+                const Padding(padding: EdgeInsets.only(top: 30)),
                 UnderlineVerifyCode(
                   codeLength: 6,
                   autoFocus: true,

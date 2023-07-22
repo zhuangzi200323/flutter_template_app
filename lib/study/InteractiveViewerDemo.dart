@@ -6,9 +6,11 @@ class InteractiveViewerDemo extends StatelessWidget {
     const int _rowCount = 20;
     const int _columnCount = 10;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text("InteractiveViewerDemo"),
+      ),
       body: Center(
-        child: Container(
+        child: SizedBox(
           height: 300,
           width: 300,
           child: InteractiveViewer(

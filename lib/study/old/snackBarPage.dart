@@ -5,20 +5,20 @@ class SnackBarPage extends StatefulWidget {
 } 
 
 class _SnackBarPage extends State<SnackBarPage> {
-  static GlobalKey<ScaffoldState> _globalKey= GlobalKey();
+  static final GlobalKey<ScaffoldState> _globalKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
       key: _globalKey,
       appBar: AppBar(
-        title: Text("Snackbar Page"),
+        title: const Text("Snackbar Page"),
       ),
       body: Center(
         child: Column(
           children: <Widget>[
             ElevatedButton(
-                child: Text("SnackBar1" ),
+                child: const Text("SnackBar1" ),
                 onPressed: () {
                   // 查找父级最近的Scaffold对应的ScaffoldState对象
                   ScaffoldState? _state = context.findAncestorStateOfType<ScaffoldState>();
@@ -28,11 +28,12 @@ class _SnackBarPage extends State<SnackBarPage> {
                   //     content: Text("我是SnackBar"),
                   //   ),
                   // );
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("我是SnackBar")));
+                  ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("我是SnackBar1")));
                 }
             ),
             ElevatedButton(
-                child: Text("SnackBar2" ),
+                child: const Text("SnackBar2" ),
                 onPressed: () {
                   // 查找父级最近的Scaffold对应的ScaffoldState对象
                   ScaffoldState? _state = context.findAncestorStateOfType();
@@ -42,21 +43,23 @@ class _SnackBarPage extends State<SnackBarPage> {
                   //     content: Text("我是SnackBar"),
                   //   ),
                   // );
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("我是SnackBar")));
+                  ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("我是SnackBar2")));
                 }
             ),
             ElevatedButton(
-                child: Text("SnackBar3" ),
+                child: const Text("SnackBar3" ),
                 onPressed: () {
                   // 查找父级最近的Scaffold对应的ScaffoldState对象
-                  ScaffoldState _state=Scaffold.of(context);
+                  // ScaffoldState? _state = Scaffold.of(context);
                   //调用ScaffoldState的showSnackBar来弹出SnackBar
                   // _state.showSnackBar(
                   //   SnackBar(
                   //     content: Text("我是SnackBar"),
                   //   ),
                   // );
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("我是SnackBar")));
+                  ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("我是SnackBar3")));
                 }
             ),
           ],

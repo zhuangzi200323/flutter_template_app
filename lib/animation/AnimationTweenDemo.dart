@@ -14,7 +14,7 @@ class _AnimationTweenDemoState extends State<AnimationTweenDemo> with SingleTick
 
   @override
   void initState() {
-    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 500))
+    _controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 500))
       ..addListener(() {
         setState(() {});
       })
@@ -34,17 +34,24 @@ class _AnimationTweenDemoState extends State<AnimationTweenDemo> with SingleTick
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("AnimationTweenDemo"),
+      ),
       body: Center(
         child: GestureDetector(
           onTap: () {
-            _controller!.forward();
+            if (_controller!.status == AnimationStatus.completed) {
+              _controller!.reverse();
+            } else {
+              _controller!.forward();
+            }
           },
           child: Container(
             height: 100,
             width: 100,
             color: _animation!.value,
             alignment: Alignment.center,
-            child: Text('点我变大',style: TextStyle(color: Colors.white, fontSize: 18),),
+            child: const Text('点我变色',style: TextStyle(color: Colors.white, fontSize: 18),),
           ),
         ),
       ),

@@ -18,7 +18,7 @@ class _AnimationMultiControllerDemoDemoState extends State<AnimationMultiControl
   void initState() {
     super.initState();
     _sizeController =
-    AnimationController(vsync: this, duration: Duration(milliseconds: 500))
+    AnimationController(vsync: this, duration: const Duration(milliseconds: 500))
       ..addListener(() {
         setState(() {});
       });
@@ -41,18 +41,27 @@ class _AnimationMultiControllerDemoDemoState extends State<AnimationMultiControl
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("AnimationMultiControllerDemo"),
+      ),
       body: Center(
         child: GestureDetector(
           onTap: () {
-            _sizeController.forward();
-            _colorController.forward();
+            if (_sizeController.status == AnimationStatus.completed &&
+                _colorController.status == AnimationStatus.completed) {
+              _sizeController.reverse();
+              _colorController.reverse();
+            } else {
+              _sizeController.forward();
+              _colorController.forward();
+            }
           },
           child: Container(
             height: _sizeAnimation.value,
             width: _sizeAnimation.value,
             color: _colorAnimation.value,
             alignment: Alignment.center,
-            child: Text(
+            child: const Text(
               '点我变化',
               style: TextStyle(color: Colors.white, fontSize: 18),
             ),

@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 class Listview2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    String str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     return Scaffold(
       appBar: AppBar(
-        title: Text("SingleChildScrollViewTestRoute"),
+        title: Text("Listview2"),
       ),
       body: Scrollbar( // 显示进度条
         child: ListView.builder(

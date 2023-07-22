@@ -10,7 +10,7 @@ class SingleChildScrollViewTestRoute extends StatelessWidget {
       ),
       body: Scrollbar( // 显示进度条
         child: SingleChildScrollView(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Center(
             child: Column(
               //动态创建一个List<Widget>

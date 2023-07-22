@@ -24,9 +24,7 @@ class Base64SlamMapView extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     if(_image != null) {
-      if(_myCanvas == null) {
-        _myCanvas = Canvas(_recorder);
-      }
+      _myCanvas ??= Canvas(_recorder);
 
       _myCanvas!.drawImage(_image!, Offset(0, 0), Paint());
       drawPointInfo(_myCanvas!, _mapInfo!, size);

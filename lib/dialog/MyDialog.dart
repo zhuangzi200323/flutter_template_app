@@ -184,12 +184,12 @@ class MyDialog extends StatelessWidget {
                           TextSpan(text: "<用户协议>",
                             style: TextStyle(color: Colors.blue),
                             recognizer: TapGestureRecognizer()..onTap = () {
-                            print("sdfsdfsdfsdfsd");
+                            print("用户协议");
                             }),
                           TextSpan(text: "和"),
                           TextSpan(text: "<隐私政策>", style: TextStyle(color: Colors.blue),
                               recognizer: TapGestureRecognizer()..onTap = () {
-                                print("sdfsdfsdfsdfsd");
+                                print("隐私政策");
                               }),
                           TextSpan(text: "。"),
                         ]
@@ -206,7 +206,7 @@ class MyDialog extends StatelessWidget {
                     Expanded(
                       flex: 2,
                       child: ElevatedButton(
-                        onPressed: (){},
+                        onPressed: (){ Navigator.of(context).pop(); },
                         child: Text("拒绝"),
                         style: ButtonStyle(
                           shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))),
@@ -218,7 +218,7 @@ class MyDialog extends StatelessWidget {
                     Expanded(
                       flex: 2,
                       child: ElevatedButton(
-                        onPressed: (){},
+                        onPressed: (){ Navigator.of(context).pop(); },
                         child: Text("同意"),
                         style: ButtonStyle(
                           shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))),
@@ -226,10 +226,10 @@ class MyDialog extends StatelessWidget {
                         ),
                       )
                     ),
-                    Padding(padding: EdgeInsets.only(left: 20)),
+                    const Padding(padding: EdgeInsets.only(left: 20)),
                   ],
                 ),
-                Padding(padding: EdgeInsets.only(top: 20)),
+                const Padding(padding: EdgeInsets.only(top: 20)),
               ],
             ),
           );
@@ -240,66 +240,76 @@ class MyDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("SingleChildScrollViewTestRoute"),
+        title: const Text("MyDialog"),
       ),
-      body: Column( // 显示进度条
-        children: <Widget>[
-          ElevatedButton(
-            child: Text("我的对话框"),
-            onPressed: () {
-              showMyDlg(context);
-            },
-          ),
-          ElevatedButton(
-            child: Text("alert dialog" ),
-            onPressed: () async {
-              //弹出对话框并等待其关闭
-              bool? delete = await showDeleteConfirmDialog1(context);
-              if (delete == null) {
-                print("取消删除");
-              } else {
-                print("已确认删除");
-              }
-            },
-          ),
-          ElevatedButton(
-            child: Text("改变语言" ),
-            onPressed: () {
-              changeLanguage(context);
-            },
-          ),
-          ElevatedButton(
-            child: Text("show list dialog" ),
-            onPressed: () {
-              showListDialog(context);
-            },
-          ),
-          ElevatedButton(
-            child: Text("showCustomDialog" ),
-            onPressed: () {
-              showCustomDialog<bool>(
-                context: context,
-                builder: (context) {
-                  return AlertDialog(
-                    title: Text("提示"),
-                    content: Text("您确定要删除当前文件吗?"),
-                    actions: <Widget>[
-                      ElevatedButton(
-                        child: Text("取消"),
-                        onPressed: () => Navigator.of(context).pop(),
-                      ),
-                      ElevatedButton(
-                        child: Text("删除"),
-                        onPressed: () {
-                          // 执行删除操作
-                          Navigator.of(context).pop(true);
-                        },
-                      ),
-                    ],
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Column(
+            children: [
+              const Padding(padding: EdgeInsets.only(top: 20)),
+              ElevatedButton(
+                child: const Text("我的对话框"),
+                onPressed: () {
+                  showMyDlg(context);
+                },
+              ),
+              const Padding(padding: EdgeInsets.only(top: 20)),
+              ElevatedButton(
+                child: const Text("alert dialog" ),
+                onPressed: () async {
+                  //弹出对话框并等待其关闭
+                  bool? delete = await showDeleteConfirmDialog1(context);
+                  if (delete == null) {
+                    print("取消删除");
+                  } else {
+                    print("已确认删除");
+                  }
+                },
+              ),
+              const Padding(padding: EdgeInsets.only(top: 20)),
+              ElevatedButton(
+                child: const Text("改变语言" ),
+                onPressed: () {
+                  changeLanguage(context);
+                },
+              ),
+              const Padding(padding: EdgeInsets.only(top: 20)),
+              ElevatedButton(
+                child: const Text("show list dialog" ),
+                onPressed: () {
+                  showListDialog(context);
+                },
+              ),
+              const Padding(padding: EdgeInsets.only(top: 20)),
+              ElevatedButton(
+                child: const Text("showCustomDialog" ),
+                onPressed: () {
+                  showCustomDialog<bool>(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: const Text("提示"),
+                        content: const Text("您确定要删除当前文件吗?"),
+                        actions: <Widget>[
+                          ElevatedButton(
+                            child: const Text("取消"),
+                            onPressed: () => Navigator.of(context).pop(),
+                          ),
+                          ElevatedButton(
+                            child: const Text("删除"),
+                            onPressed: () {
+                              // 执行删除操作
+                              Navigator.of(context).pop(true);
+                            },
+                          ),
+                        ],
+                      );
+                    },
                   );
                 },
-              );
-            },
+              ),
+            ],
           ),
         ],
       ),

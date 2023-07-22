@@ -43,6 +43,18 @@ class _HomePageState extends State<HomePage>
       TabTitle(S.of(context).tech, 5, const AnimationPage()),
       TabTitle(S.of(context).finance, 6, const AnimationPage()),
       TabTitle(S.of(context).fishion, 7, const AnimationPage()),
+      TabTitle(S.of(context).article, 8, const AnimationPage()),
+      TabTitle(S.of(context).tech, 9, const AnimationPage()),
+      TabTitle(S.of(context).finance, 10, const AnimationPage()),
+      TabTitle(S.of(context).fishion, 11, const AnimationPage()),
+      TabTitle(S.of(context).article, 12, const AnimationPage()),
+      TabTitle(S.of(context).tech, 13, const AnimationPage()),
+      TabTitle(S.of(context).finance, 14, const AnimationPage()),
+      TabTitle(S.of(context).fishion, 15, const AnimationPage()),
+      TabTitle(S.of(context).article, 16, const AnimationPage()),
+      TabTitle(S.of(context).tech, 17, const AnimationPage()),
+      TabTitle(S.of(context).finance, 18, const AnimationPage()),
+      TabTitle(S.of(context).fishion, 19, const AnimationPage()),
     ];
   }
 
@@ -81,27 +93,25 @@ class _HomePageState extends State<HomePage>
     Author2Entity author2entity = JsonConvert.fromJsonAsT<Author2Entity>(jsonMap);
     Author author = Author.fromJson(jsonMap);
 
-    if(controller == null){
-      controller = TabController(
+    controller ??= TabController(
         initialIndex: selectIndex,
         length: tabList!.length,
         vsync: this,
       );
-    }
     return Scaffold(
         backgroundColor: Colors.white,
         body: Column(
           children: <Widget>[
             Container(
-              color: new Color(0xfff4f5f6),
+              color: const Color(0xfff4f5f6),
               height: 38.0,
               child: TabBar(
                 isScrollable: true,
                 //是否可以滚动
                 controller: controller,
                 labelColor: Colors.red,
-                unselectedLabelColor: Color(0xff666666),
-                labelStyle: TextStyle(fontSize: 16.0),
+                unselectedLabelColor: const Color(0xff666666),
+                labelStyle: const TextStyle(fontSize: 16.0),
                 tabs: tabList!.map((item) {
                   return Tab(
                     text: item.title,

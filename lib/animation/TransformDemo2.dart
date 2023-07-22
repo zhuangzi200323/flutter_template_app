@@ -96,7 +96,9 @@ class _TransformDemoState extends State<TransformDemo2> with SingleTickerProvide
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text("TransformDemo2"),
+      ),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[

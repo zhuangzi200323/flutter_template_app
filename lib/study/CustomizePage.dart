@@ -75,9 +75,9 @@ class _CustomizePageState extends State<CustomizePage> {
     }
     //print("${MediaQuery.of(context).size}");
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text("CustomizePage"),
-      // ),
+      appBar: AppBar(
+        title: Text("CustomizePage"),
+      ),
       body: Container(
         child: GestureDetector(
           onScaleStart: (details) => onScaleStart(details),

@@ -24,35 +24,33 @@ class _LoginPageState extends State<LoginPage> {
 
   void mailTextEditValueChange(String value) {
     setState(() {
-      showMailTextEditClearIcon = value.length > 0;
+      showMailTextEditClearIcon = value.isNotEmpty;
     });
   }
 
   void pwdTextEditValueChange(String value) {
     setState(() {
-      showPwdTextEditClearIcon = value.length > 0;
+      showPwdTextEditClearIcon = value.isNotEmpty;
     });
   }
 
   Widget getPwdIcons() {
-    return Container(
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            showPwdTextEditClearIcon ? IconButton(icon: Image.asset('resources/images/close.png'),
-                onPressed: (){
-                  pwdController.clear();
-                  pwdTextEditValueChange("");
-                }) : SizedBox(),
-            IconButton(icon: showPwd ? Image.asset('resources/images/eye_p.png') : Image.asset('resources/images/eye.png'),
-                onPressed: (){
-                  setState(() {
-                    showPwd = !showPwd;
-                  });
-                })
-          ],
-        )
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        showPwdTextEditClearIcon ? IconButton(icon: Image.asset('resources/images/close.png'),
+            onPressed: (){
+              pwdController.clear();
+              pwdTextEditValueChange("");
+            }) : const SizedBox(),
+        IconButton(icon: showPwd ? Image.asset('resources/images/eye_p.png') : Image.asset('resources/images/eye.png'),
+            onPressed: (){
+              setState(() {
+                showPwd = !showPwd;
+              });
+            })
+      ],
     );
   }
 
@@ -64,42 +62,42 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Padding(padding: EdgeInsets.only(top: 20)),
+                const Padding(padding: EdgeInsets.only(top: 20)),
                 Flexible(
                     child: Text(S.of(context).agreement_policy_title, style: TextStyle(fontWeight: FontWeight.bold),)
                 ),
-                Padding(padding: EdgeInsets.only(top: 20)),
+                const Padding(padding: EdgeInsets.only(top: 20)),
                 Row(
                   //mainAxisSize: MainAxisSize.min,
                   children: [
-                    Padding(padding: EdgeInsets.only(left: 20)),
+                    const Padding(padding: EdgeInsets.only(left: 20)),
                     Flexible(
                       child: Text(S.of(context).agreement_policy_welcome),
                     ),
-                    Padding(padding: EdgeInsets.only(left: 20)),
+                    const Padding(padding: EdgeInsets.only(left: 20)),
                   ],
                 ),
-                Padding(padding: EdgeInsets.only(top: 20)),
+                const Padding(padding: EdgeInsets.only(top: 20)),
                 Row(
                   //mainAxisSize: MainAxisSize.min,
                   children: [
-                    Padding(padding: EdgeInsets.only(left: 20)),
+                    const Padding(padding: EdgeInsets.only(left: 20)),
                     Flexible(
                       child:
                       Text.rich(
                         TextSpan(children: [
                           TextSpan(text: S.of(context).read_agreement_prefix),
                           TextSpan(text: S.of(context).user_agreement,
-                              style: TextStyle(color: Colors.blue),
+                              style: const TextStyle(color: Colors.blue),
                               recognizer: TapGestureRecognizer()..onTap = () {
-                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                                   content: Text('用户协议，未完待续...'),
                                 ));
                               }),
                           TextSpan(text: S.of(context).and),
                           TextSpan(text: S.of(context).private_policy, style: TextStyle(color: Colors.blue),
                               recognizer: TapGestureRecognizer()..onTap = () {
-                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                                   content: Text('隐私政策，未完待续...'),
                                 ));
                               }),
@@ -108,27 +106,27 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
-                    Padding(padding: EdgeInsets.only(left: 20)),
+                    const Padding(padding: EdgeInsets.only(left: 20)),
                   ],
                 ),
-                Padding(padding: EdgeInsets.only(top: 20)),
+                const Padding(padding: EdgeInsets.only(top: 20)),
                 Row(
                   children: [
-                    Padding(padding: EdgeInsets.only(left: 20)),
+                    const Padding(padding: EdgeInsets.only(left: 20)),
                     Expanded(
                         flex: 2,
                         child: ElevatedButton(
                           onPressed: (){
                             SystemChannels.platform.invokeMethod('SystemNavigator.pop');
                           },
-                          child: Text(S.of(context).reject),
                           style: ButtonStyle(
                             shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))),
                             backgroundColor: MaterialStateProperty.all(Colors.yellow[700]),
                           ),
+                          child: Text(S.of(context).reject),
                         )
                     ),
-                    Expanded(child: SizedBox(), flex: 1,),
+                    const Expanded(flex: 1,child: SizedBox(),),
                     Expanded(
                         flex: 2,
                         child: ElevatedButton(
@@ -136,17 +134,17 @@ class _LoginPageState extends State<LoginPage> {
                             saveUserAgreeLicense();
                             Navigator.pop(context);
                           },
-                          child: Text(S.of(context).agree),
                           style: ButtonStyle(
                             shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))),
                             backgroundColor: MaterialStateProperty.all(Colors.green[600]),
                           ),
+                          child: Text(S.of(context).agree),
                         )
                     ),
-                    Padding(padding: EdgeInsets.only(left: 20)),
+                    const Padding(padding: EdgeInsets.only(left: 20)),
                   ],
                 ),
-                Padding(padding: EdgeInsets.only(top: 20)),
+                const Padding(padding: EdgeInsets.only(top: 20)),
               ],
             ),
           );
@@ -169,7 +167,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
-    Future.delayed(Duration(milliseconds: 500), (){
+    Future.delayed(const Duration(milliseconds: 500), (){
       showLicenseDlg();
     });
 
@@ -179,13 +177,16 @@ class _LoginPageState extends State<LoginPage> {
         FocusScope.of(context).requestFocus(blankNode);
       },
       child: Scaffold(
+        appBar: AppBar(
+          title: const Text("LoginPage"),
+        ),
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
               Padding(padding: EdgeInsets.only(top: statusBarHeight)),
-              Padding(padding: EdgeInsets.only(top: 30)),
+              const Padding(padding: EdgeInsets.only(top: 30)),
               Image.asset('resources/images/logo.png'),
-              Padding(padding: EdgeInsets.only(top: 30)),
+              const Padding(padding: EdgeInsets.only(top: 30)),
               Column(
                 children: <Widget>[
                   Form(
@@ -213,7 +214,7 @@ class _LoginPageState extends State<LoginPage> {
                                       mailController.clear();
                                       mailTextEditValueChange("");
                                     }) : null,
-                                focusedBorder: UnderlineInputBorder(  //选中时下边框颜色
+                                focusedBorder: const UnderlineInputBorder(  //选中时下边框颜色
                                   borderSide: BorderSide(color: Colors.green),
                                 ),
                               ),
@@ -225,21 +226,21 @@ class _LoginPageState extends State<LoginPage> {
                                 return null;
                               },
                             ),
-                            Padding(padding: EdgeInsets.only(top: 20)),
+                            const Padding(padding: EdgeInsets.only(top: 20)),
                             TextFormField(
                               controller: pwdController,
                               onChanged: (value) {
                                 pwdTextEditValueChange(value);
                               },
                               decoration: InputDecoration(
-                                contentPadding: EdgeInsets.only(left: 10, right: 10),
+                                contentPadding: const EdgeInsets.only(left: 10, right: 10),
                                 labelText: S.of(context).password,
-                                labelStyle: TextStyle(color: Colors.black),
+                                labelStyle: const TextStyle(color: Colors.black),
                                 hintText: S.of(context).pls_input_password,
-                                hintStyle: TextStyle(color: Colors.grey),
-                                prefixIcon: Icon(Icons.lock),
+                                hintStyle: const TextStyle(color: Colors.grey),
+                                prefixIcon: const Icon(Icons.lock),
                                 suffixIcon: getPwdIcons(),
-                                focusedBorder: UnderlineInputBorder(  //选中时下边框颜色
+                                focusedBorder: const UnderlineInputBorder(  //选中时下边框颜色
                                   borderSide: BorderSide(color: Colors.green),
                                 ),
                               ),
@@ -264,12 +265,12 @@ class _LoginPageState extends State<LoginPage> {
                             }));
                           },
                         ),
-                        Expanded(child: SizedBox()),
+                        const Expanded(child: SizedBox()),
                         TextButton(
-                          style: ButtonStyle(alignment: Alignment.centerRight),
+                          style: const ButtonStyle(alignment: Alignment.centerRight),
                           child: Text(S.of(context).forget_password),
                           onPressed: () {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                               content: Text('忘记密码功能，未完待续...'),
                             ));
                           },
@@ -278,23 +279,23 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   Row(
                       children: <Widget>[
-                        SizedBox(width: 20,),
+                        const SizedBox(width: 20,),
                         Expanded(
                             child: ElevatedButton(
                                 onPressed: () {
                                   if (formKey.currentState!.validate()) {
-                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                                       content: Text('登录功能，未完待续...'),
                                     ));
                                   }
                                 },
                                 style: ButtonStyle(
-                                  shape:MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))),
+                                  shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))),
                                 ),
                                 child: Text(S.of(context).login)
                             )
                         ),
-                        SizedBox(width: 20,),
+                        const SizedBox(width: 20,),
                       ]
                   ),
                 ],

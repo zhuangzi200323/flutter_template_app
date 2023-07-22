@@ -19,13 +19,13 @@ List<CameraDescription>? cameras;
 
 void main() async {
   // Fetch the available cameras before initializing the app.
-  try {
-    WidgetsFlutterBinding.ensureInitialized();
-    cameras = await availableCameras();
-    print(cameras == null ? "0" : cameras!.length);
-  } on CameraException catch (e) {
-    LogUtils.logError(e.code, e.description == null ? "" : e.description!);
-  }
+  // try {
+  //   WidgetsFlutterBinding.ensureInitialized();
+  //   cameras = await availableCameras();
+  //   print(cameras == null ? "0" : cameras!.length);
+  // } on CameraException catch (e) {
+  //   LogUtils.logError(e.code, e.description == null ? "" : e.description!);
+  // }
   runApp(MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context)=>ThemeModel()), //主题
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
     return Consumer2<ThemeModel, CurrentLocale>(   //主题设置1：状态获取方式
         builder: (context, themeModel, currentLocale, child) {
           return MaterialApp(
-            localizationsDelegates: [
+            localizationsDelegates: const [
               S.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
@@ -98,7 +98,7 @@ class _MainPageState extends State<MainPage> {
     } else if (selectedIndex == 3) {
       return MinePage();
     } else {
-      return Text("this is a error page");
+      return const Text("this is a error page");
     }
   }
 
@@ -129,18 +129,18 @@ class _MainPageState extends State<MainPage> {
               ),
               label: S.of(context).home),
           BottomNavigationBarItem(
-              icon: Icon(Icons.business), label: S.of(context).robot),
+              icon: const Icon(Icons.business), label: S.of(context).robot),
           BottomNavigationBarItem(
-              icon: Icon(Icons.school), label: S.of(context).discovery),
+              icon: const Icon(Icons.school), label: S.of(context).discovery),
           BottomNavigationBarItem(
-              icon: Icon(Icons.person), label: S.of(context).mine),
+              icon: const Icon(Icons.person), label: S.of(context).mine),
         ],
         type: BottomNavigationBarType.fixed,
         currentIndex: selectedIndex,
         //fixedColor: Colors.blue,
         onTap: _onItemTapped,
       ),
-      drawer: MyDrawer(), //抽屉
+      drawer: const MyDrawer(), //抽屉
       backgroundColor: Theme.of(context).primaryColor,
       body: PageTransitionSwitcher(
         duration: const Duration(milliseconds: 1000),

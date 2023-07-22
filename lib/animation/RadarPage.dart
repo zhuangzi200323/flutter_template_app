@@ -3,10 +3,15 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 
 class RadarPage extends StatelessWidget {
+  const RadarPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xFF0F1532),
+        appBar: AppBar(
+          title: const Text("RadarPage"),
+        ),
+        backgroundColor: const Color(0xFF0F1532),
         body: Stack(
           children: [
             Positioned.fill(

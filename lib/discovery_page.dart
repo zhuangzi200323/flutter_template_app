@@ -16,7 +16,7 @@ class DiscoveryPage extends StatefulWidget {
 class _DiscoveryPageState extends State<DiscoveryPage> {
   bool? checkboxValue;
   double _sliderValue = 0;
-  RangeValues _rangeValues = RangeValues(0, 25);
+  RangeValues _rangeValues = const RangeValues(0, 25);
 
   void onChangeForSlider(double v) {
     setState(() {
@@ -33,18 +33,18 @@ class _DiscoveryPageState extends State<DiscoveryPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 CheckboxListTile(
-                    title: Text("Flutter语言"),
-                    value: checkboxValue == null ? false : checkboxValue,
+                    title: const Text("Flutter语言"),
+                    value: checkboxValue ?? false,
                     controlAffinity: ListTileControlAffinity.leading,
-                    subtitle: Text('一枚有态度的程序员'),
-                    secondary: Icon(Icons.person),
+                    subtitle: const Text('一枚有态度的程序员'),
+                    secondary: const Icon(Icons.person),
                     onChanged: (value) {
                       setState(() {
                         checkboxValue = value;
                       });
                     }
                 ),
-                Text('值：$_sliderValue'),
+                Text('rangeValue.start：${_rangeValues.start}' + ', rangeValue.end：${_rangeValues.end}' + ', sliderValue：$_sliderValue' + ', checkbox: $checkboxValue'),
                 Slider(
                   value: _sliderValue,
                   min: 0,
@@ -63,21 +63,17 @@ class _DiscoveryPageState extends State<DiscoveryPage> {
                 ),
                 SliderTheme(
                   data: SliderTheme.of(context).copyWith(
-                      activeTrackColor: Color(0xff404080),
+                      activeTrackColor: const Color(0xff404080),
                       thumbColor: Colors.blue,
-                      overlayColor: Colors.green,
+                      overlayColor: Colors.green[100],
                       valueIndicatorColor: Colors.purpleAccent),
                   child: Slider(
                     value: _sliderValue,
                     label: '$_sliderValue',
                     min: 0,
                     max: 100,
-                    divisions: 4,
-                    onChanged: (v) {
-                      setState(() {
-                        _sliderValue = v;
-                      });
-                    },
+                    divisions: 5,
+                    onChanged: onChangeForSlider,
                   ),
                 ),
                 SliderTheme(
@@ -89,12 +85,8 @@ class _DiscoveryPageState extends State<DiscoveryPage> {
                     label: '$_sliderValue',
                     min: 0,
                     max: 100,
-                    divisions: 4,
-                    onChanged: (v) {
-                      setState(() {
-                        _sliderValue = v;
-                      });
-                    },
+                    divisions: 10,
+                    onChanged: onChangeForSlider,
                   ),
                 ),
                 RangeSlider(
@@ -113,36 +105,29 @@ class _DiscoveryPageState extends State<DiscoveryPage> {
                   value: _sliderValue,
                   min: 0,
                   max: 100,
-                  onChanged: (v) {
-                    setState(() {
-                      _sliderValue = v;
-                    });
-                  },
+                  onChanged: onChangeForSlider,
                 ),
                 Slider.adaptive(
                   value: _sliderValue,
                   min: 0,
                   max: 100,
-                  onChanged: (v) {
-                    setState(() {
-                      _sliderValue = v;
-                    });
-                  },
+                  onChanged: onChangeForSlider,
                 ),
                 ElevatedButton(
-                  child: Text("DemoFlowPopMenu page"),
+                  child: const Text("DemoFlowPopMenu page"),
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(builder:(context) {
                       return DemoFlowPopMenu();
                     }));
                   },
                 ),
+                const Padding(padding: EdgeInsets.only(top: 20)),
                 Container(
                   alignment: Alignment.center,
                   height: 200,
                   width: 200,
                   decoration: BoxDecoration(
-                    image: DecorationImage(
+                    image: const DecorationImage(
                       image: NetworkImage('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg'),
                       fit: BoxFit.cover
                     ),
@@ -152,13 +137,13 @@ class _DiscoveryPageState extends State<DiscoveryPage> {
                     ),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: Text("Flutter 学习", style: TextStyle(color: Colors.white),),
+                  child: const Text("Flutter 学习", style: TextStyle(color: Colors.white),),
                 ),
                 Container(
                   height: 200,
                   width: 200,
                   decoration: BoxDecoration(
-                    image: DecorationImage(
+                    image: const DecorationImage(
                       image: NetworkImage(
                           'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg'),
                       fit: BoxFit.cover,
@@ -170,36 +155,40 @@ class _DiscoveryPageState extends State<DiscoveryPage> {
                     shape: BoxShape.circle,
                   ),
                 ),
+                const Padding(padding: EdgeInsets.only(top: 20)),
                 Container(
                   color: Colors.blue,
-                  child: Text('老孟，专注分享Flutter技术及应用'),
                   alignment: Alignment.center,
                   height: 60,
                   width: 250,
                   transform: Matrix4.rotationZ(0.5),
                   transformAlignment: Alignment.center,
+                  child: const Text('老孟，专注分享Flutter技术及应用'),
                 ),
+                const Padding(padding: EdgeInsets.only(top: 20)),
                 Container(
                   color: Colors.blue,
-                  child: Text('老孟，专注分享Flutter技术及应用'),
                   alignment: Alignment.center,
-                  constraints: BoxConstraints(
+                  constraints: const BoxConstraints(
                     maxHeight: 100,
                     maxWidth: 200,
                     minHeight: 100,
                     minWidth: 100,
                   ),
+                  child: const Text('老孟，专注分享Flutter技术及应用'),
                 ),
-                Container(
+                const Padding(padding: EdgeInsets.only(top: 20)),
+                SizedBox(
                   height: 30,
                   child: SizedBox.expand(
                     child: Container(
                       color: Colors.red,
-                      child: Text("This is a test")
+                      child: const Text("This is a test")
                     ),
                   ),
                 ),
-                Container(
+                const Padding(padding: EdgeInsets.only(top: 20)),
+                SizedBox(
                   height: 100,
                   child: Column(
                     children: <Widget>[
@@ -208,7 +197,7 @@ class _DiscoveryPageState extends State<DiscoveryPage> {
                         child: Container(
                           color: Colors.blue,
                           alignment: Alignment.center,
-                          child: Text('1 Flex/ 6 Total',style: TextStyle(color: Colors.white),),
+                          child: const Text('1 Flex/ 6 Total',style: TextStyle(color: Colors.white),),
                         ),
                       ),
                       Flexible(
@@ -216,7 +205,7 @@ class _DiscoveryPageState extends State<DiscoveryPage> {
                         child: Container(
                           color: Colors.red,
                           alignment: Alignment.center,
-                          child: Text('2 Flex/ 6 Total',style: TextStyle(color: Colors.white),),
+                          child: const Text('2 Flex/ 6 Total',style: TextStyle(color: Colors.white),),
                         ),
                       ),
                       Flexible(
@@ -224,12 +213,13 @@ class _DiscoveryPageState extends State<DiscoveryPage> {
                         child: Container(
                           color: Colors.green,
                           alignment: Alignment.center,
-                          child: Text('3 Flex/ 6 Total',style: TextStyle(color: Colors.white),),
+                          child: const Text('3 Flex/ 6 Total',style: TextStyle(color: Colors.white),),
                         ),
                       ),
                     ],
                   ),
                 ),
+                const Padding(padding: EdgeInsets.only(top: 20)),
                 ElevatedButton(
                   child: Text("CylinderChart page"),
                   onPressed: () {
@@ -240,8 +230,9 @@ class _DiscoveryPageState extends State<DiscoveryPage> {
                     }));
                   },
                 ),
+                const Padding(padding: EdgeInsets.only(top: 20)),
                 ElevatedButton(
-                  child: Text("DrawingBoard page"),
+                  child: const Text("DrawingBoard page"),
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(builder:(context) {
                       return Scaffold(
@@ -250,30 +241,34 @@ class _DiscoveryPageState extends State<DiscoveryPage> {
                     }));
                   },
                 ),
+                const Padding(padding: EdgeInsets.only(top: 20)),
                 ElevatedButton(
-                  child: Text("SliverAppBarDemo page"),
+                  child: const Text("SliverAppBarDemo page"),
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(builder:(context) {
                       return SliverAppBarDemo();
                     }));
                   },
                 ),
+                const Padding(padding: EdgeInsets.only(top: 20)),
                 ElevatedButton(
-                  child: Text("SliverPersistentHeaderDemo page"),
+                  child: const Text("SliverPersistentHeaderDemo page"),
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(builder:(context) {
                       return SliverPersistentHeaderDemo();
                     }));
                   },
                 ),
+                const Padding(padding: EdgeInsets.only(top: 20)),
                 ElevatedButton(
-                  child: Text("InteractiveViewerDemo page"),
+                  child: const Text("InteractiveViewerDemo page"),
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(builder:(context) {
                       return InteractiveViewerDemo();
                     }));
                   },
                 ),
+                const Padding(padding: EdgeInsets.only(top: 20)),
               ]
           ),
         ),

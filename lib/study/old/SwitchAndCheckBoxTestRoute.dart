@@ -11,14 +11,14 @@ class _SwitchAndCheckBoxTestRouteState extends State<SwitchAndCheckBoxTestRoute>
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("SwitchAndCheckBoxTestRoute"),
+          title: const Text("SwitchAndCheckBoxTestRoute"),
         ),
         body:Column(
           children: <Widget>[
             CheckboxListTile(
               secondary: const Icon(Icons.alarm_on),
               title: const Text('每天6：10 响铃'),
-              subtitle: Text('12小时58分钟后响铃'),
+              subtitle: const Text('12小时58分钟后响铃'),
               value: _switchSelected,
               onChanged: (bool? value) {
                 setState(() {

@@ -10,11 +10,12 @@ class SliverAppBarDemo extends StatelessWidget {
           pinned: true,
           expandedHeight: 200.0,
           flexibleSpace: FlexibleSpaceBar(
-            title: Text('复仇者联盟'),
-            background: Image.network(
-              'http://img.haote.com/upload/20180918/2018091815372344164.jpg',
-              fit: BoxFit.fitHeight,
-            ),
+            title: const Text('复仇者联盟'),
+            background: Image.asset("resources/images/fuchou.jpg", fit: BoxFit.fitWidth,)
+            // Image.network(
+            //   'http://img.haote.com/upload/20180918/2018091815372344164.jpg',
+            //   fit: BoxFit.fitHeight,
+            // ),
           ),
         ),
         SliverList(
@@ -26,7 +27,7 @@ class SliverAppBarDemo extends StatelessWidget {
           }, childCount: 5),
         ),
         SliverGrid(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3, crossAxisSpacing: 5, mainAxisSpacing: 3),
           delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
             return Container(

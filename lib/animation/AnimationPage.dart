@@ -20,91 +20,106 @@ class AnimationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: Column(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
-              child: Text("AnimationControllerDemo page"),
-              onPressed: () {
-                // Navigator.push(context, MaterialPageRoute(builder:(context) {
-                //   return AnimationControllerDemo();
-                // }));
-                Navigator.of(context).push(CirclePageRoute(builder: (context) {
-                  return AnimationControllerDemo();
-                }));
-              },
-            ),
-            ElevatedButton(
-              child: Text("AnimationTweenDemo page"),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder:(context) {
-                  return AnimationTweenDemo();
-                }));
-              },
-            ),
-            ElevatedButton(
-              child: Text("AnimationCurveDemo page"),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder:(context) {
-                  return AnimationCurveDemo();
-                }));
-              },
-            ),
-            ElevatedButton(
-              child: Text("AnimationMultiControllerDemo page"),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder:(context) {
-                  return AnimationMultiControllerDemo();
-                }));
-              },
-            ),
-            ElevatedButton(
-              child: Text("AnimatedListDemo page"),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder:(context) {
-                  return AnimatedListDemo();
-                }));
-              },
-            ),
-            ElevatedButton(
-              child: Text("CircleProgressPainter page"),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder:(context) {
-                  return CircleProgressPainter();
-                }));
-              },
-            ),
-            ElevatedButton(
-              child: Text("TransformDemo page"),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder:(context) {
-                  return TransformDemo();
-                }));
-              },
-            ),
-            ElevatedButton(
-              child: Text("TransformDemo2 page"),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder:(context) {
-                  return TransformDemo2();
-                }));
-              },
-            ),
-            ElevatedButton(
-              child: Text("WaterRipplePage page"),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder:(context) {
-                  return WaterRipplePage();
-                }));
-              },
-            ),
-            ElevatedButton(
-              child: Text("RadarPage page"),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder:(context) {
-                  return RadarPage();
-                }));
-              },
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Padding(padding: EdgeInsets.only(top: 20)),
+                ElevatedButton(
+                  child: const Text("AnimationControllerDemo page"),
+                  onPressed: () {
+                    // Navigator.push(context, MaterialPageRoute(builder:(context) {
+                    //   return AnimationControllerDemo();
+                    // }));
+                    Navigator.of(context).push(CirclePageRoute(builder: (context) {
+                      return const AnimationControllerDemo();
+                    }));
+                  },
+                ),
+                const Padding(padding: EdgeInsets.only(top: 20)),
+                ElevatedButton(
+                  child: const Text("AnimationTweenDemo page"),
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder:(context) {
+                      return const AnimationTweenDemo();
+                    }));
+                  },
+                ),
+                const Padding(padding: EdgeInsets.only(top: 20)),
+                ElevatedButton(
+                  child: const Text("AnimationCurveDemo page"),
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder:(context) {
+                      return const AnimationCurveDemo();
+                    }));
+                  },
+                ),
+                const Padding(padding: EdgeInsets.only(top: 20)),
+                ElevatedButton(
+                  child: const Text("AnimationMultiControllerDemo page"),
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder:(context) {
+                      return const AnimationMultiControllerDemo();
+                    }));
+                  },
+                ),
+                const Padding(padding: EdgeInsets.only(top: 20)),
+                ElevatedButton(
+                  child: const Text("AnimatedListDemo page"),
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder:(context) {
+                      return const AnimatedListDemo();
+                    }));
+                  },
+                ),
+                const Padding(padding: EdgeInsets.only(top: 20)),
+                ElevatedButton(
+                  child: const Text("CircleProgressPainter page"),
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder:(context) {
+                      return const CircleProgressPainter();
+                    }));
+                  },
+                ),
+                const Padding(padding: EdgeInsets.only(top: 20)),
+                ElevatedButton(
+                  child: const Text("TransformDemo page"),
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder:(context) {
+                      return const TransformDemo();
+                    }));
+                  },
+                ),
+                const Padding(padding: EdgeInsets.only(top: 20)),
+                ElevatedButton(
+                  child: const Text("TransformDemo2 page"),
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder:(context) {
+                      return const TransformDemo2();
+                    }));
+                  },
+                ),
+                const Padding(padding: EdgeInsets.only(top: 20)),
+                ElevatedButton(
+                  child: const Text("WaterRipplePage page"),
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder:(context) {
+                      return WaterRipplePage();
+                    }));
+                  },
+                ),
+                const Padding(padding: EdgeInsets.only(top: 20)),
+                ElevatedButton(
+                  child: const Text("RadarPage page"),
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder:(context) {
+                      return RadarPage();
+                    }));
+                  },
+                ),
+              ],
             ),
           ],
         ),

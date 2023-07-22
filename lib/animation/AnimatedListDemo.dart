@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedListDemo extends StatefulWidget {
+  const AnimatedListDemo({super.key});
+
   @override
   State<StatefulWidget> createState() => _AnimatedListDemo();
 }
@@ -12,20 +14,20 @@ class _AnimatedListDemo extends State<AnimatedListDemo>
   final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
 
   void _addItem() {
-    final int _index = _list.length;
-    _list.insert(_index, _index);
-    _listKey.currentState!.insertItem(_index);
+    final int index = _list.length;
+    _list.insert(index, index);
+    _listKey.currentState!.insertItem(index);
   }
 
   void _removeItem() {
-    final int _index = _list.length - 1;
-    var item = _list[_index].toString();
+    final int index = _list.length - 1;
+    var item = _list[index].toString();
     _listKey.currentState!.removeItem(
-        _index, (context, animation) => _buildItem(item, animation));
-    _list.removeAt(_index);
+        index, (context, animation) => _buildItem(item, animation));
+    _list.removeAt(index);
   }
 
-  Widget _buildItem(String _item, Animation _animation) {
+  Widget _buildItem(String item, Animation animation) {
     // return SizeTransition(
     //   sizeFactor: _animation.drive(CurveTween(curve: Curves.easeIn)).drive(Tween<double>(begin: 0.0, end: 1.0)),
     //   child: Card(
@@ -37,11 +39,11 @@ class _AnimatedListDemo extends State<AnimatedListDemo>
     //   ),
     // );
     return SlideTransition(
-      position: _animation.drive(CurveTween(curve: Curves.easeIn)).drive(Tween<Offset>(begin: Offset(1,1),end: Offset(0,1))),
+      position: animation.drive(CurveTween(curve: Curves.easeIn)).drive(Tween<Offset>(begin: const Offset(1,1),end: const Offset(0,0))),
       child: Card(
         child: ListTile(
           title: Text(
-            _item,
+            item,
           ),
         ),
       ),
@@ -51,6 +53,9 @@ class _AnimatedListDemo extends State<AnimatedListDemo>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("AnimatedListDemo"),
+      ),
       body: AnimatedList(
         key: _listKey,
         initialItemCount: _list.length,
@@ -63,15 +68,17 @@ class _AnimatedListDemo extends State<AnimatedListDemo>
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           FloatingActionButton(
+            heroTag: "btn_add",
             onPressed: () => _addItem(),
-            child: Icon(Icons.add),
+            child: const Icon(Icons.add),
           ),
-          SizedBox(
+          const SizedBox(
             width: 60,
           ),
           FloatingActionButton(
+            heroTag: "btn_remove",
             onPressed: () => _removeItem(),
-            child: Icon(Icons.remove),
+            child: const Icon(Icons.remove),
           ),
         ],
       ),

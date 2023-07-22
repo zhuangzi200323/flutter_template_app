@@ -45,7 +45,7 @@ class _SlamMapInfoPageState extends State<SlamMapInfoPage> {
       mapInfo!.data!.projects![0].positions!.positions![i].position!.show_y = (wy - mapInfo!.data!.projects![0].positions!.positions![i].position!
           .world_y!) / mapInfo!.data!.projects![0].map_info!.map_info!.resolution!;
     }
-    Uint8List bytes = Base64Decoder().convert(mapInfo!.data!.projects![0].map_data!);
+    Uint8List bytes = const Base64Decoder().convert(mapInfo!.data!.projects![0].map_data!);
 
     decodeImageFromList(bytes).then((value) {
       setState(() {
@@ -139,6 +139,9 @@ class _SlamMapInfoPageState extends State<SlamMapInfoPage> {
     matrix4.scale(scale);
     matrix4.rotateZ(rotation);
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("slam mapInfo page"),
+      ),
       body: Container(
         child: GestureDetector(
           onScaleStart: (details) => onScaleStart(details),

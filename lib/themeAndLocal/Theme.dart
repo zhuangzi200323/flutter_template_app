@@ -40,7 +40,7 @@ class AppTheme {
       colorScheme: ColorScheme.fromSwatch().copyWith(primary: Color(mainColor["primaryColor"])),
 
       // appbar样式
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         iconTheme: IconThemeData(color: Colors.white),
         titleTextStyle: TextStyle(
           color: Colors.white,
@@ -54,7 +54,7 @@ class AppTheme {
       ),
 
       // 用于自定义对话框形状的主题。
-      dialogTheme: DialogTheme(
+      dialogTheme: const DialogTheme(
         backgroundColor: Colors.white,
         titleTextStyle: TextStyle(
           fontSize: 18.0,

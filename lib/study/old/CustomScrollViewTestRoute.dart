@@ -15,7 +15,7 @@ class CustomScrollViewTestRoute extends StatelessWidget {
             flexibleSpace: FlexibleSpaceBar(
               title: const Text('Demo'),
               background: Image.asset(
-                "./images/logo.png", fit: BoxFit.cover,),
+                "resources/images/logo.png", fit: BoxFit.cover,),
             ),
           ),
           SliverPadding(

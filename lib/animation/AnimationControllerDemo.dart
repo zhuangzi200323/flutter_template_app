@@ -41,6 +41,9 @@ class _AnimationControllerDemoState extends State<AnimationControllerDemo> with 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("AnimationControllerDemo"),
+      ),
       body: Center(
         child: GestureDetector(
           onTap: () {

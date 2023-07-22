@@ -125,25 +125,26 @@ class _CustomizePageState extends State<CustomizePage3> {
     matrix4.scale(scale);
     matrix4.rotateZ(rotation);
     return Scaffold(
-      body: Container(
-        child: GestureDetector(
-          onScaleStart: (details) => onScaleStart(details),
-          onScaleUpdate: (details) => onScaleUpdate(details),
-          onScaleEnd: (details) => onScaleEnd(details),
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            color: Colors.transparent,
-            child: Transform(
-              alignment: Alignment.center,
-              transform: matrix4,
-              child: CustomSingleChildLayout(
-                delegate: CenterWithOriginalSizeDelegate(Size(image1!.width.toDouble(), image1!.height.toDouble()), Alignment.center),
-                child: CustomPaint(
-                  painter: TestImageView3(image1!, clickPoint: fingerPoint),
-                  size: Size(MediaQuery.of(context).size.width, MediaQuery.of(context).size.height),
-                  key: anchorKey,
-                ),
+      appBar: AppBar(
+        title: const Text("Customize page"),
+      ),
+      body: GestureDetector(
+        onScaleStart: (details) => onScaleStart(details),
+        onScaleUpdate: (details) => onScaleUpdate(details),
+        onScaleEnd: (details) => onScaleEnd(details),
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          color: Colors.transparent,
+          child: Transform(
+            alignment: Alignment.center,
+            transform: matrix4,
+            child: CustomSingleChildLayout(
+              delegate: CenterWithOriginalSizeDelegate(Size(image1!.width.toDouble(), image1!.height.toDouble()), Alignment.center),
+              child: CustomPaint(
+                painter: TestImageView3(image1!, clickPoint: fingerPoint),
+                size: Size(MediaQuery.of(context).size.width, MediaQuery.of(context).size.height),
+                key: anchorKey,
               ),
             ),
           ),

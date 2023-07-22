@@ -8,7 +8,7 @@ class FocusTestRoute extends StatefulWidget {
 class _FocusTestRouteState extends State<FocusTestRoute> {
   FocusNode focusNode1 = new FocusNode();
   FocusNode focusNode2 = new FocusNode();
-  late FocusScopeNode focusScopeNode;
+  FocusScopeNode? focusScopeNode;
 
 
   @override
@@ -29,13 +29,13 @@ class _FocusTestRouteState extends State<FocusTestRoute> {
             TextField(
               autofocus: true,
               focusNode: focusNode1,//关联focusNode1
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   labelText: "input1"
               ),
             ),
             TextField(
               focusNode: focusNode2,//关联focusNode2
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   labelText: "input2",
                 // 未获得焦点下划线设为灰色
                 enabledBorder: UnderlineInputBorder(
@@ -56,14 +56,12 @@ class _FocusTestRouteState extends State<FocusTestRoute> {
                       //将焦点从第一个TextField移到第二个TextField
                       // 这是一种写法 FocusScope.of(context).requestFocus(focusNode2);
                       // 这是第二种写法
-                      if(null == focusScopeNode){
-                        focusScopeNode = FocusScope.of(context);
-                      }
-                      focusScopeNode.requestFocus(focusNode2);
+                      focusScopeNode ??= FocusScope.of(context);
+                      focusScopeNode?.requestFocus(focusNode2);
                     },
                   ),
                   ElevatedButton(
-                    child: Text("隐藏键盘"),
+                    child: const Text("隐藏键盘"),
                     onPressed: () {
                       // 当所有编辑框都失去焦点时键盘就会收起
                       focusNode1.unfocus();
@@ -77,12 +75,12 @@ class _FocusTestRouteState extends State<FocusTestRoute> {
             Theme(
                 data: Theme.of(context).copyWith(
                     hintColor: Colors.deepOrange[200], //定义下划线颜色
-                    inputDecorationTheme: InputDecorationTheme(
+                    inputDecorationTheme: const InputDecorationTheme(
                         labelStyle: TextStyle(color: Colors.yellow),//定义label字体样式
                         hintStyle: TextStyle(color: Colors.red, fontSize: 14.0)//定义提示文本样式
                     )
                 ),
-                child: Column(
+                child: const Column(
                   children: <Widget>[
                     TextField(
                       decoration: InputDecoration(

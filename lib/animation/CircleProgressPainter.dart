@@ -14,13 +14,16 @@ class _CircleProgressPainterState extends State<CircleProgressPainter> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("CircleProgressPainter"),
+      ),
       body: Center(
-        child: Container(
+        child: SizedBox(
           height: 150,
           width: 150,
           child: TweenAnimationBuilder(
             tween: Tween(begin: 0.0, end: 1.0),
-            duration: Duration(seconds: 2),
+            duration: const Duration(seconds: 2),
             builder: (BuildContext context, double value, Widget? child) {
               return CustomPaint(
                 painter: _CircleProgressPainter(value),
@@ -39,7 +42,7 @@ class _CircleProgressPainter extends CustomPainter {
 
   _CircleProgressPainter(this.progress);
 
-  Paint _paint = Paint()
+  final Paint _paint = Paint()
     ..style = PaintingStyle.stroke
     ..strokeWidth = 10
     ..color = Colors.blue;
@@ -51,7 +54,7 @@ class _CircleProgressPainter extends CustomPainter {
     Gradient gradient = SweepGradient(
       //startAngle: -pi / 2,
       endAngle: pi * 2 * progress,
-      colors: [
+      colors: const [
         Color(0xFFD32D2F),
         Color(0xFFEA4886),
       ],

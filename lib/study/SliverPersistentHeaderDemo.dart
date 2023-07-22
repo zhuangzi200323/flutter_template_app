@@ -5,13 +5,16 @@ class SliverPersistentHeaderDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("SliverPersistentHeaderDemo"),
+      ),
       body: CustomScrollView(
         slivers: <Widget>[
           SliverPersistentHeader(
             delegate: MySliverPersistentHeaderDelegate(),
           ),
           SliverGrid(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3, crossAxisSpacing: 5, mainAxisSpacing: 3),
             delegate:
             SliverChildBuilderDelegate((BuildContext context, int index) {
@@ -32,7 +35,7 @@ class MySliverPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
     return Container(
         color: Colors.blue,
         alignment: Alignment.center,
-        child: Text('我是一个SliverPersistentHeader',
+        child: const Text('我是一个SliverPersistentHeader',
             style: TextStyle(color: Colors.white)));
   }
 
